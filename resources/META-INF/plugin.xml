@@ -5,7 +5,7 @@
   <vendor email="1095288440@qq.com" url="https://github.com/healingtjx">healingtjx</vendor>
 
   <description><![CDATA[
-      用于根据配置模板，快速生成controller,service,serviceimpl 代码
+      用于根据配置模板，快速生成controller,service,impl 代码
       Enter short description for your plugin here.
     ]]></description>
 
@@ -30,8 +30,8 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action id="TestAction" class="com.healingtjx.cold.action.TestAction" text="TestAction" description="TestAction">
-      <add-to-group group-id="NewGroup1" anchor="first"/>
+    <action id="TestAction" class="com.healingtjx.cold.action.TestAction" text="controller,service,impl" description="快速生成controller,service,impl">
+      <add-to-group group-id="NewGroup" anchor="first"/>
     </action>
   </actions>
 
