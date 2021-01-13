@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.healingtjx.cold.ui.TemplateEditPane">
+  <grid id="27dc6" binding="templateEdit" layout-manager="BorderLayout" hgap="2" vgap="2">
+    <constraints>
+      <xy x="19" y="36" width="679" height="642"/>
+    </constraints>
+    <properties>
+      <opaque value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="e0b44" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="b52c" layout-manager="FlowLayout" hgap="2" vgap="2" flow-align="0">
+            <constraints border-constraint="North"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="ce7aa" class="javax.swing.JLabel">
+                <constraints/>
+                <properties>
+                  <text value="Test using"/>
+                </properties>
+              </component>
+              <hspacer id="738b7">
+                <constraints/>
+              </hspacer>
+              <component id="335a0" class="javax.swing.JComboBox">
+                <constraints/>
+                <properties/>
+              </component>
+              <component id="e6131" class="javax.swing.JButton">
+                <constraints/>
+                <properties>
+                  <iconTextGap value="0"/>
+                  <maximumSize width="27" height="27"/>
+                  <minimumSize width="27" height="27"/>
+                  <opaque value="false"/>
+                  <preferredSize width="27" height="27"/>
+                  <text value=""/>
+                  <toolTipText value="Test Template"/>
+                  <verticalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="2cee0" class="javax.swing.JButton">
+                <constraints/>
+                <properties>
+                  <maximumSize width="27" height="27"/>
+                  <minimumSize width="27" height="27"/>
+                  <preferredSize width="27" height="27"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <splitpane id="2200" binding="editorSplitPane">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <dividerSize value="2"/>
+              <enabled value="false"/>
+              <oneTouchExpandable value="false"/>
+              <orientation value="0"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="7f775" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <splitpane position="right"/>
+                </constraints>
+                <properties>
+                  <name value=""/>
+                  <opaque value="false"/>
+                </properties>
+                <border type="none" title="Template" title-justification="1">
+                  <font size="10"/>
+                </border>
+                <children>
+                  <component id="67b55" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+                    <constraints border-constraint="Center"/>
+                    <properties>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="37bbe" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <splitpane position="left"/>
+                </constraints>
+                <properties>
+                  <name value=""/>
+                </properties>
+                <border type="none" title="Test Input" title-justification="1">
+                  <font size="10"/>
+                </border>
+                <children/>
+              </grid>
+            </children>
+          </splitpane>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
