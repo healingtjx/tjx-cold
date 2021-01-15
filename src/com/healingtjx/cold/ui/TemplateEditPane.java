@@ -19,10 +19,11 @@ public class TemplateEditPane {
     private JComboBox testInputs;
     private JSplitPane editorSplitPane;
     private JTextArea textArea1;
-    private JScrollPane scrollPane;
     private JPanel panel1;
+    private JEditorPane a123EditorPane;
     private JButton showTestInput;
     private JComboBox targetLanguage;
+
 
 
 

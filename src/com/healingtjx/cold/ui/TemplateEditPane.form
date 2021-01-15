@@ -61,6 +61,7 @@
             <properties>
               <dividerSize value="2"/>
               <enabled value="false"/>
+              <maximumSize width="669" height="550"/>
               <oneTouchExpandable value="false"/>
               <orientation value="0"/>
             </properties>
@@ -71,6 +72,10 @@
                   <splitpane position="right"/>
                 </constraints>
                 <properties>
+                  <alignmentX value="1.0"/>
+                  <alignmentY value="1.0"/>
+                  <inheritsPopupMenu value="false"/>
+                  <maximumSize width="669" height="550"/>
                   <name value=""/>
                   <opaque value="false"/>
                 </properties>
@@ -78,20 +83,22 @@
                   <font size="10"/>
                 </border>
                 <children>
-                  <scrollpane id="30daf" binding="scrollPane">
-                    <constraints border-constraint="North"/>
+                  <scrollpane id="40423">
+                    <constraints border-constraint="West"/>
                     <properties>
-                      <alignmentX value="1.0"/>
-                      <alignmentY value="1.0"/>
-                      <inheritsPopupMenu value="false"/>
-                      <visible value="true"/>
+                      <maximumSize width="600" height="550"/>
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="67b55" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
+                      <component id="701f1" class="javax.swing.JEditorPane" binding="a123EditorPane" default-binding="true">
                         <constraints/>
                         <properties>
-                          <text value=""/>
+                          <editable value="true"/>
+                          <enabled value="true"/>
+                          <maximumSize width="600" height="550"/>
+                          <minimumSize width="14" height="15"/>
+                          <preferredSize width="669" height="550"/>
+                          <text value="123"/>
                         </properties>
                       </component>
                     </children>
