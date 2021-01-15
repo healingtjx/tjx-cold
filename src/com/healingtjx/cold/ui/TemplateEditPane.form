@@ -79,27 +79,34 @@
                   <name value=""/>
                   <opaque value="false"/>
                 </properties>
+                <clientProperties>
+                  <html.disable class="java.lang.Boolean" value="false"/>
+                </clientProperties>
                 <border type="none" title="Template" title-justification="1">
                   <font size="10"/>
                 </border>
                 <children>
-                  <scrollpane id="40423">
-                    <constraints border-constraint="West"/>
+                  <scrollpane id="cd909">
+                    <constraints border-constraint="North"/>
                     <properties>
                       <maximumSize width="600" height="550"/>
+                      <minimumSize width="600" height="550"/>
+                      <opaque value="false"/>
+                      <preferredSize width="600" height="550"/>
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="701f1" class="javax.swing.JEditorPane" binding="a123EditorPane" default-binding="true">
+                      <component id="56d15" class="javax.swing.JTextArea" binding="textArea1" default-binding="true">
                         <constraints/>
                         <properties>
-                          <editable value="true"/>
-                          <enabled value="true"/>
                           <maximumSize width="600" height="550"/>
-                          <minimumSize width="14" height="15"/>
-                          <preferredSize width="669" height="550"/>
-                          <text value="123"/>
+                          <minimumSize width="600" height="550"/>
+                          <verifyInputWhenFocusTarget value="false"/>
+                          <wrapStyleWord value="false"/>
                         </properties>
+                        <clientProperties>
+                          <caretWidth class="java.lang.Integer" value="1"/>
+                        </clientProperties>
                       </component>
                     </children>
                   </scrollpane>

@@ -18,9 +18,8 @@ public class TemplateEditPane {
     private JButton testButton;
     private JComboBox testInputs;
     private JSplitPane editorSplitPane;
-    private JTextArea textArea1;
     private JPanel panel1;
-    private JEditorPane a123EditorPane;
+    private JTextArea textArea1;
     private JButton showTestInput;
     private JComboBox targetLanguage;
 
@@ -31,11 +30,6 @@ public class TemplateEditPane {
         return templateEdit;
     }
 
-
-    private void createUIComponents() {
-        // 手动创建 jTextArea
-        textArea1 = new JTextArea(40,1);
-    }
 
 
 }
