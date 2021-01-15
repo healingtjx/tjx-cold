@@ -4,6 +4,8 @@ import com.healingtjx.cold.ui.NewModuleDialog;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 
+import java.awt.*;
+
 /**
  * @Author: tjx
  * @Description:
@@ -25,10 +27,12 @@ public class TestAction extends AnAction {
     private void showHintDialog() {
         NewModuleDialog dialog = new NewModuleDialog();
         dialog.setTitle("New Module");
+        dialog.setPreferredSize(new Dimension(300,180));
         dialog.pack();
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
         dialog.requestFocus();
     }
+
 
 }

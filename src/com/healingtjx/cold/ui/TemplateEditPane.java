@@ -20,6 +20,7 @@ public class TemplateEditPane {
     private JSplitPane editorSplitPane;
     private JPanel panel1;
     private JTextArea textArea1;
+    private JButton 保存Button;
     private JButton showTestInput;
     private JComboBox targetLanguage;
 

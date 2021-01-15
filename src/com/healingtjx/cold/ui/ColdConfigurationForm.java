@@ -12,8 +12,8 @@ public class ColdConfigurationForm {
     private JPanel mainPane;
 
     public ColdConfigurationForm() {
-        tabbedPane.insertTab("配置",null,new InfoConfigEditPane().getPanel(),null,0);
-        tabbedPane.insertTab("模板配置",null,new TemplateEditPane().getTemplateEdit(),null,0);
+        tabbedPane.insertTab("信息配置",null,new InfoConfigEditPane().getPanel(),null,0);
+        tabbedPane.insertTab("模板配置",null,new TemplateEditPane().getTemplateEdit(),null,1);
     }
 
     /**

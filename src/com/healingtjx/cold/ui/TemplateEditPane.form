@@ -22,7 +22,7 @@
               <component id="ce7aa" class="javax.swing.JLabel">
                 <constraints/>
                 <properties>
-                  <text value="Test using"/>
+                  <text value="编辑模板"/>
                 </properties>
               </component>
               <hspacer id="738b7">
@@ -32,26 +32,24 @@
                 <constraints/>
                 <properties/>
               </component>
-              <component id="e6131" class="javax.swing.JButton">
+              <component id="4c9f4" class="javax.swing.JComboBox">
+                <constraints/>
+                <properties/>
+              </component>
+              <component id="d1a97" class="javax.swing.JButton" binding="保存Button" default-binding="true">
                 <constraints/>
                 <properties>
-                  <iconTextGap value="0"/>
-                  <maximumSize width="27" height="27"/>
-                  <minimumSize width="27" height="27"/>
-                  <opaque value="false"/>
-                  <preferredSize width="27" height="27"/>
-                  <text value=""/>
-                  <toolTipText value="Test Template"/>
+                  <autoscrolls value="false"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="保存"/>
                   <verticalAlignment value="0"/>
+                  <verticalTextPosition value="0"/>
                 </properties>
               </component>
-              <component id="2cee0" class="javax.swing.JButton">
+              <component id="67c0d" class="javax.swing.JButton" default-binding="true">
                 <constraints/>
                 <properties>
-                  <maximumSize width="27" height="27"/>
-                  <minimumSize width="27" height="27"/>
-                  <preferredSize width="27" height="27"/>
-                  <text value=""/>
+                  <text value="重置"/>
                 </properties>
               </component>
             </children>
