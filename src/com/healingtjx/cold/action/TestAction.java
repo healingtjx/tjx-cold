@@ -1,8 +1,11 @@
 package com.healingtjx.cold.action;
 
+import com.healingtjx.cold.service.TestService;
+import com.healingtjx.cold.storage.TestStorage;
 import com.healingtjx.cold.ui.NewModuleDialog;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.components.ServiceManager;
 
 import java.awt.*;
 
@@ -13,10 +16,35 @@ import java.awt.*;
  **/
 public class TestAction extends AnAction {
 
+    private TestService testService;
+
+    private TestStorage testStorage;
+
+    public TestAction(){
+        if(testService == null){
+            testService = ServiceManager.getService(TestService.class);
+        }
+
+        if(testStorage == null){
+            TestStorage.MyState state = new TestStorage.MyState();
+            state.setValue("123123123");
+            testStorage = new TestStorage();
+            testStorage.loadState(state);
+        }
+    }
+
     @Override
     public void actionPerformed(AnActionEvent e) {
         // TODO: insert action logic here
+        //模拟调用service
+        testService.test();
+        TestStorage.MyState state = testStorage.getState();
+        System.out.println(state.getValue()+"test");
+
+
         showHintDialog();
+
+
     }
 
 
