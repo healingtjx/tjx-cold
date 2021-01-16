@@ -27,8 +27,13 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <applicationConfigurable instance="com.healingtjx.cold.ui.ColdConfigurable"/>
+
         <applicationService serviceInterface="com.healingtjx.cold.service.TestService"
                             serviceImplementation="com.healingtjx.cold.service.impl.TestServiceImpl"/>
+
+        <applicationService serviceInterface="com.healingtjx.cold.storage.SettingsStorage"
+                            serviceImplementation="com.healingtjx.cold.storage.SettingsStorage"/>
+
     </extensions>
 
     <actions>

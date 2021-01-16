@@ -1,7 +1,11 @@
 package com.healingtjx.cold.ui;
 
+import com.healingtjx.cold.storage.SettingsStorage;
+import com.intellij.openapi.components.ServiceManager;
+
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.Map;
 
 /**
  * @Author: tjx
@@ -63,6 +67,12 @@ public class NewModuleDialog extends JDialog {
 
     private void onSuccess() {
         // add your code here
+
+        SettingsStorage settingsStorage = ServiceManager.getService(SettingsStorage.class);
+        Map<String, String> codeTemplates = settingsStorage.getCodeTemplates();
+        codeTemplates.put("tjx","houm ti ian skdaj  ");
+        settingsStorage.setCodeTemplates(codeTemplates);
+        System.out.println("cheng l ");
         dispose();
     }
 

@@ -1,6 +1,8 @@
 package com.healingtjx.cold.action;
 
+import com.google.gson.Gson;
 import com.healingtjx.cold.service.TestService;
+import com.healingtjx.cold.storage.SettingsStorage;
 import com.healingtjx.cold.storage.TestStorage;
 import com.healingtjx.cold.ui.NewModuleDialog;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -8,6 +10,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.components.ServiceManager;
 
 import java.awt.*;
+import java.util.Map;
 
 /**
  * @Author: tjx
@@ -20,9 +23,15 @@ public class TestAction extends AnAction {
 
     private TestStorage testStorage;
 
+    private SettingsStorage settingsStorage;
+
     public TestAction(){
         if(testService == null){
             testService = ServiceManager.getService(TestService.class);
+        }
+
+        if(settingsStorage == null){
+            settingsStorage = ServiceManager.getService(SettingsStorage.class);
         }
 
         if(testStorage == null){
@@ -37,11 +46,9 @@ public class TestAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         // TODO: insert action logic here
         //模拟调用service
-        testService.test();
-        TestStorage.MyState state = testStorage.getState();
-        System.out.println(state.getValue()+"test");
+        Map<String, String> codeTemplates = settingsStorage.getCodeTemplates();
 
-
+        System.out.println("配置数据"+new Gson().toJson(codeTemplates));
         showHintDialog();
 
 
