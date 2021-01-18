@@ -40,7 +40,7 @@
           <text value="        模式"/>
         </properties>
       </component>
-      <component id="86ab8" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+      <component id="86ab8" class="javax.swing.JTextField" binding="controllerText">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -48,7 +48,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="ab010" class="javax.swing.JTextField" default-binding="true">
+      <component id="ab010" class="javax.swing.JTextField" binding="serviceText">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -56,7 +56,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="23e7f" class="javax.swing.JTextField" default-binding="true">
+      <component id="23e7f" class="javax.swing.JTextField" binding="implText">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
@@ -64,7 +64,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="cdf6f" class="javax.swing.JRadioButton" binding="默认RadioButton" default-binding="true">
+      <component id="cdf6f" class="javax.swing.JRadioButton" binding="defaultPattern">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -72,7 +72,7 @@
           <text value="默认"/>
         </properties>
       </component>
-      <component id="ab800" class="javax.swing.JRadioButton" default-binding="true">
+      <component id="ab800" class="javax.swing.JRadioButton" binding="onePattern">
         <constraints>
           <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -80,7 +80,7 @@
           <text value="模式1"/>
         </properties>
       </component>
-      <component id="96cbb" class="javax.swing.JRadioButton" default-binding="true">
+      <component id="96cbb" class="javax.swing.JRadioButton" binding="twoPattern">
         <constraints>
           <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

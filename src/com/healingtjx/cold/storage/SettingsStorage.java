@@ -1,5 +1,6 @@
 package com.healingtjx.cold.storage;
 
+import com.healingtjx.cold.entity.InfoConfig;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
@@ -17,22 +18,41 @@ import java.util.Map;
  **/
 @State(name = "SettingsStorage", storages = {@Storage("$APP_CONFIG$/tjxCold-settings.xml")})
 public class SettingsStorage implements PersistentStateComponent<SettingsStorage> {
+
+    /**
+     * 存储配置数据
+     */
+
+    private InfoConfig infoConfig;
+
+    /**
+     * 基础信息对应的 key
+     */
+    public static final String INFO_KEY = "INFO_CONFIG";
+
+
     @Nullable
     @Override
     public SettingsStorage getState() {
 
-        if (codeTemplates == null) {
+        if (infoConfig == null) {
             loadDefaultSettings();
         }
         return this;
     }
 
-    private Map<String, String> codeTemplates;
-
-
+    /**
+     * 加载默认数据
+     */
     private void loadDefaultSettings() {
-        codeTemplates = new HashMap<>();
-        codeTemplates.put("test", "tjx");
+        //基础信息配置
+        InfoConfig infoConfig = new InfoConfig();
+        infoConfig.setControllerPackage("controller");
+        infoConfig.setServicePackage("service");
+        infoConfig.setImplPackage("service.impl");
+        infoConfig.setPattern(0);
+        this.infoConfig = infoConfig;
+
     }
 
 
@@ -42,11 +62,10 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
     }
 
 
-    public void setCodeTemplates(Map<String, String> codeTemplates) {
-        this.codeTemplates = codeTemplates;
+
+    public InfoConfig getInfoConfig() {
+        return infoConfig;
     }
 
-    public Map<String, String> getCodeTemplates() {
-        return codeTemplates;
-    }
+
 }

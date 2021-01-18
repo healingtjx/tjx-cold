@@ -1,5 +1,7 @@
 package com.healingtjx.cold.ui;
 
+import com.healingtjx.cold.storage.SettingsStorage;
+import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SearchableConfigurable;
@@ -22,6 +24,15 @@ public class ColdConfigurable implements SearchableConfigurable, Configurable.No
      */
     private ColdConfigurationForm configurationForm;
 
+    /**
+     * 配置信息
+     */
+    private SettingsStorage settingsStorage;
+
+    public ColdConfigurable() {
+        settingsStorage = ServiceManager.getService(SettingsStorage.class);
+    }
+
 
     @NotNull
     @Override
@@ -39,18 +50,19 @@ public class ColdConfigurable implements SearchableConfigurable, Configurable.No
     @Override
     public JComponent createComponent() {
         if (configurationForm == null) {
-            configurationForm = new ColdConfigurationForm();
+            configurationForm = new ColdConfigurationForm(settingsStorage);
         }
         return configurationForm.getMainPane();
     }
 
     @Override
     public boolean isModified() {
-        return false;
+        System.out.println("isModified . . .. . .");
+        return true;
     }
 
     @Override
     public void apply() throws ConfigurationException {
-
+        System.out.println("apply . . .. . .");
     }
 }

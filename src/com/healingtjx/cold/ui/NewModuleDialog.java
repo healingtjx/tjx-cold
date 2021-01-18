@@ -69,9 +69,9 @@ public class NewModuleDialog extends JDialog {
         // add your code here
 
         SettingsStorage settingsStorage = ServiceManager.getService(SettingsStorage.class);
-        Map<String, String> codeTemplates = settingsStorage.getCodeTemplates();
-        codeTemplates.put("tjx","houm ti ian skdaj  ");
-        settingsStorage.setCodeTemplates(codeTemplates);
+//        Map<String, Object> codeTemplates = settingsStorage.getCodeTemplates();
+//        codeTemplates.put("tjx","houm ti ian skdaj  ");
+//        settingsStorage.setCodeTemplates(codeTemplates);
         System.out.println("cheng l ");
         dispose();
     }
