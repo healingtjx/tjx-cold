@@ -46,13 +46,8 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
      */
     private void loadDefaultSettings() {
         //基础信息配置
-        InfoConfig infoConfig = new InfoConfig();
-        infoConfig.setControllerPackage("controller");
-        infoConfig.setServicePackage("service");
-        infoConfig.setImplPackage("service.impl");
-        infoConfig.setPattern(0);
+        InfoConfig infoConfig = new InfoConfig("controller","service","service.impl",0);
         this.infoConfig = infoConfig;
-
     }
 
 
@@ -61,7 +56,9 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
         XmlSerializerUtil.copyBean(settingsStorage, this);
     }
 
-
+    public void setInfoConfig(InfoConfig infoConfig) {
+        this.infoConfig = infoConfig;
+    }
 
     public InfoConfig getInfoConfig() {
         return infoConfig;

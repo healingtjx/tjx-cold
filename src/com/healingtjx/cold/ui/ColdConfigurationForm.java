@@ -14,12 +14,18 @@ public class ColdConfigurationForm {
     private JTabbedPane tabbedPane;
     private JPanel mainPane;
 
+    private InfoConfigEditPane infoConfigEditPane;
+    private TemplateEditPane templateEditPane;
+
     public ColdConfigurationForm(SettingsStorage settingsStorage) {
         // 获取配置信息
         InfoConfig infoConfig = settingsStorage.getInfoConfig();
-        tabbedPane.insertTab("信息配置",null,new InfoConfigEditPane(infoConfig).getPanel(),null,0);
-        tabbedPane.insertTab("模板配置",null,new TemplateEditPane().getTemplateEdit(),null,1);
+        infoConfigEditPane = new InfoConfigEditPane(infoConfig);
+        templateEditPane = new TemplateEditPane();
+        tabbedPane.insertTab("信息配置", null, infoConfigEditPane.getPanel(), null, 0);
+        tabbedPane.insertTab("模板配置", null, templateEditPane.getTemplateEdit(), null, 1);
     }
+
 
     /**
      * 获取 主容器
@@ -30,4 +36,13 @@ public class ColdConfigurationForm {
         return mainPane;
     }
 
+
+    /**
+     * 获取 info配置信息
+     *
+     * @return
+     */
+    public InfoConfig getInfoConfigInputs() {
+        return infoConfigEditPane.getInputs();
+    }
 }

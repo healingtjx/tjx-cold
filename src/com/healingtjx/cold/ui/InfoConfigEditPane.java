@@ -1,5 +1,6 @@
 package com.healingtjx.cold.ui;
 
+import com.google.gson.Gson;
 import com.healingtjx.cold.entity.InfoConfig;
 
 import javax.swing.*;
@@ -52,6 +53,18 @@ public class InfoConfigEditPane {
                 break;
             }
         }
+    }
+
+    /**
+     * 获取 当前页面input 内容
+     *
+     * @return
+     */
+    public InfoConfig getInputs() {
+        boolean defaultSelected = defaultPattern.isSelected();
+        boolean oneSelected = onePattern.isSelected();
+        return new InfoConfig(controllerText.getText(), serviceText.getText(), implText.getText()
+                , defaultSelected ? 0 : (oneSelected ? 1 : 2));
     }
 
 

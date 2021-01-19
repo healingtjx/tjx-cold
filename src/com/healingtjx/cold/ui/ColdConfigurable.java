@@ -1,5 +1,6 @@
 package com.healingtjx.cold.ui;
 
+import com.healingtjx.cold.entity.InfoConfig;
 import com.healingtjx.cold.storage.SettingsStorage;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.options.Configurable;
@@ -57,12 +58,15 @@ public class ColdConfigurable implements SearchableConfigurable, Configurable.No
 
     @Override
     public boolean isModified() {
-        System.out.println("isModified . . .. . .");
-        return true;
+        InfoConfig infoConfigInputs = configurationForm.getInfoConfigInputs();
+        //校验
+        return infoConfigInputs == null ? false : true;
     }
 
     @Override
     public void apply() throws ConfigurationException {
-        System.out.println("apply . . .. . .");
+        //保存
+        InfoConfig infoConfigInputs = configurationForm.getInfoConfigInputs();
+        settingsStorage.setInfoConfig(infoConfigInputs);
     }
 }
