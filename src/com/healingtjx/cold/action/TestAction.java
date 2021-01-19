@@ -1,6 +1,5 @@
 package com.healingtjx.cold.action;
 
-import com.google.gson.Gson;
 import com.healingtjx.cold.service.TestService;
 import com.healingtjx.cold.storage.SettingsStorage;
 import com.healingtjx.cold.storage.TestStorage;
@@ -10,7 +9,6 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.components.ServiceManager;
 
 import java.awt.*;
-import java.util.Map;
 
 /**
  * @Author: tjx
@@ -25,16 +23,16 @@ public class TestAction extends AnAction {
 
     private SettingsStorage settingsStorage;
 
-    public TestAction(){
-        if(testService == null){
+    public TestAction() {
+        if (testService == null) {
             testService = ServiceManager.getService(TestService.class);
         }
 
-        if(settingsStorage == null){
+        if (settingsStorage == null) {
             settingsStorage = ServiceManager.getService(SettingsStorage.class);
         }
 
-        if(testStorage == null){
+        if (testStorage == null) {
             TestStorage.MyState state = new TestStorage.MyState();
             state.setValue("123123123");
             testStorage = new TestStorage();
@@ -57,12 +55,11 @@ public class TestAction extends AnAction {
 
     /**
      * 显示提示对话框
-     *
      */
     private void showHintDialog() {
         NewModuleDialog dialog = new NewModuleDialog();
         dialog.setTitle("New Module");
-        dialog.setPreferredSize(new Dimension(300,180));
+        dialog.setPreferredSize(new Dimension(300, 180));
         dialog.pack();
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);

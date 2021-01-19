@@ -5,11 +5,10 @@ import com.intellij.openapi.components.ServiceManager;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.Map;
 
 /**
  * @Author: tjx
- * @Description:  new module 界面
+ * @Description: new module 界面
  * @Date: 创建于10:59 2021-01-12
  **/
 public class NewModuleDialog extends JDialog {

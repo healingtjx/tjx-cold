@@ -1,7 +1,6 @@
 package com.healingtjx.cold.ui;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * @Author: tjx
@@ -20,17 +19,22 @@ public class TemplateEditPane {
     private JSplitPane editorSplitPane;
     private JPanel panel1;
     private JTextArea textArea1;
-    private JButton 保存Button;
+    private JButton submitButton;
+    private JButton resetButton;
+    private JComboBox patternComboBox;
     private JButton showTestInput;
     private JComboBox targetLanguage;
 
 
+    public TemplateEditPane() {
+        patternComboBox.addItem(new String("简单"));
+        patternComboBox.addItem(new String("复杂"));
+    }
 
 
     public JPanel getTemplateEdit() {
         return templateEdit;
     }
-
 
 
 }

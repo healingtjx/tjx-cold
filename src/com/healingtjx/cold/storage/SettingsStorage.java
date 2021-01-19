@@ -1,6 +1,7 @@
 package com.healingtjx.cold.storage;
 
 import com.healingtjx.cold.entity.InfoConfig;
+import com.healingtjx.cold.entity.TemplateConfig;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
@@ -22,14 +23,22 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
     /**
      * 存储配置数据
      */
-
     private InfoConfig infoConfig;
 
     /**
-     * 基础信息对应的 key
+     * 二维数组 保存 template 模板
+     * [[简单配置],[复杂配置]]
      */
-    public static final String INFO_KEY = "INFO_CONFIG";
+    private Map<String, TemplateConfig> templateConfigList;
 
+    /**
+     * 简单模式
+     */
+    private String SIMPLE_KEY = "SIMPLE";
+    /**
+     * 复杂模式
+     */
+    private String INTRICACY_KEY = "INTRICACY";
 
     @Nullable
     @Override
@@ -46,7 +55,13 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
      */
     private void loadDefaultSettings() {
         //基础信息配置
-        InfoConfig infoConfig = new InfoConfig("controller","service","service.impl",0);
+        InfoConfig infoConfig = new InfoConfig("controller", "service", "service.impl", 0);
+        //基础模板配置
+        templateConfigList = new HashMap<>(4);
+        TemplateConfig simpleTemplate = new TemplateConfig("controller", "service", "impl");
+        TemplateConfig intricacyTemplate = new TemplateConfig("intricacyController", "intricacyService", "intricacyImpl");
+        templateConfigList.put(SIMPLE_KEY, simpleTemplate);
+        templateConfigList.put(INTRICACY_KEY, intricacyTemplate);
         this.infoConfig = infoConfig;
     }
 

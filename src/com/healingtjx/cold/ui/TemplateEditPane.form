@@ -28,7 +28,7 @@
               <hspacer id="738b7">
                 <constraints/>
               </hspacer>
-              <component id="335a0" class="javax.swing.JComboBox">
+              <component id="335a0" class="javax.swing.JComboBox" binding="patternComboBox">
                 <constraints/>
                 <properties/>
               </component>
@@ -36,7 +36,7 @@
                 <constraints/>
                 <properties/>
               </component>
-              <component id="d1a97" class="javax.swing.JButton" binding="保存Button" default-binding="true">
+              <component id="d1a97" class="javax.swing.JButton" binding="submitButton">
                 <constraints/>
                 <properties>
                   <autoscrolls value="false"/>
@@ -46,10 +46,10 @@
                   <verticalTextPosition value="0"/>
                 </properties>
               </component>
-              <component id="67c0d" class="javax.swing.JButton" default-binding="true">
+              <component id="67c0d" class="javax.swing.JButton" binding="resetButton">
                 <constraints/>
                 <properties>
-                  <text value="重置"/>
+                  <text value="重置当前配置"/>
                 </properties>
               </component>
             </children>

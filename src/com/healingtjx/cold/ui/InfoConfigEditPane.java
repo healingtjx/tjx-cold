@@ -1,10 +1,8 @@
 package com.healingtjx.cold.ui;
 
-import com.google.gson.Gson;
 import com.healingtjx.cold.entity.InfoConfig;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * @Author: tjx
