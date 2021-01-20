@@ -1,9 +1,11 @@
 package com.healingtjx.cold.ui;
 
 import com.healingtjx.cold.entity.InfoConfig;
+import com.healingtjx.cold.entity.TemplateConfig;
 import com.healingtjx.cold.storage.SettingsStorage;
 
 import javax.swing.*;
+import java.util.Map;
 
 /**
  * @Author: tjx
@@ -20,8 +22,9 @@ public class ColdConfigurationForm {
     public ColdConfigurationForm(SettingsStorage settingsStorage) {
         // 获取配置信息
         InfoConfig infoConfig = settingsStorage.getInfoConfig();
+        Map<String, TemplateConfig> templateConfigList = settingsStorage.getTemplateConfigList();
         infoConfigEditPane = new InfoConfigEditPane(infoConfig);
-        templateEditPane = new TemplateEditPane();
+        templateEditPane = new TemplateEditPane(templateConfigList);
         tabbedPane.insertTab("信息配置", null, infoConfigEditPane.getPanel(), null, 0);
         tabbedPane.insertTab("模板配置", null, templateEditPane.getTemplateEdit(), null, 1);
     }

@@ -1,6 +1,7 @@
 package com.healingtjx.cold.storage;
 
 import com.healingtjx.cold.entity.InfoConfig;
+import com.healingtjx.cold.entity.PatternEnum;
 import com.healingtjx.cold.entity.TemplateConfig;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
@@ -31,14 +32,6 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
      */
     private Map<String, TemplateConfig> templateConfigList;
 
-    /**
-     * 简单模式
-     */
-    private String SIMPLE_KEY = "SIMPLE";
-    /**
-     * 复杂模式
-     */
-    private String INTRICACY_KEY = "INTRICACY";
 
     @Nullable
     @Override
@@ -60,8 +53,8 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
         templateConfigList = new HashMap<>(4);
         TemplateConfig simpleTemplate = new TemplateConfig("controller", "service", "impl");
         TemplateConfig intricacyTemplate = new TemplateConfig("intricacyController", "intricacyService", "intricacyImpl");
-        templateConfigList.put(SIMPLE_KEY, simpleTemplate);
-        templateConfigList.put(INTRICACY_KEY, intricacyTemplate);
+        templateConfigList.put(PatternEnum.SIMPLE.getKey(), simpleTemplate);
+        templateConfigList.put(PatternEnum.INTRICACY.getKey(), intricacyTemplate);
         this.infoConfig = infoConfig;
     }
 
@@ -75,9 +68,13 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
         this.infoConfig = infoConfig;
     }
 
+
     public InfoConfig getInfoConfig() {
         return infoConfig;
     }
 
 
+    public Map<String, TemplateConfig> getTemplateConfigList() {
+        return templateConfigList;
+    }
 }
