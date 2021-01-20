@@ -65,18 +65,12 @@ public class NewModuleDialog extends JDialog {
     }
 
     private void onSuccess() {
-        // add your code here
 
-        SettingsStorage settingsStorage = ServiceManager.getService(SettingsStorage.class);
-//        Map<String, Object> codeTemplates = settingsStorage.getCodeTemplates();
-//        codeTemplates.put("tjx","houm ti ian skdaj  ");
-//        settingsStorage.setCodeTemplates(codeTemplates);
         System.out.println("cheng l ");
         dispose();
     }
 
     private void onCancel() {
-        // add your code here if necessary
         dispose();
     }
 

@@ -6,7 +6,18 @@ package com.healingtjx.cold.entity;
  * @Date: 创建于10:54 2021-01-20
  **/
 public enum TemplateItemEnum {
-    CONTROLLER("controller"), SERVICE("service"), IMPL("impl");
+    /**
+     * controller
+     */
+    CONTROLLER("controller"),
+    /**
+     * service
+     */
+    SERVICE("service"),
+    /**
+     * impl
+     */
+    IMPL("impl");
 
     private String name;
 

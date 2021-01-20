@@ -8,9 +8,20 @@ package com.healingtjx.cold.entity;
 public enum PatternEnum {
 
 
-    SIMPLE("简单", "SIMPLE"), INTRICACY("复杂", "INTRICACY");
+    /**
+     * 简单
+     */
+    SIMPLE("简单", "SIMPLE"),
+
+    /**
+     * 复杂
+     */
+    INTRICACY("复杂", "INTRICACY");
+
 
     private String name;
+
+
     private String key;
 
 
@@ -26,7 +37,6 @@ public enum PatternEnum {
     public String getName() {
         return name;
     }
-
 
 
 }

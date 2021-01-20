@@ -44,9 +44,7 @@ public class TestAction extends AnAction {
     public void actionPerformed(AnActionEvent e) {
         // TODO: insert action logic here
         //模拟调用service
-//        Map<String, Object> codeTemplates = settingsStorage.getCodeTemplates();
 
-//        System.out.println("配置数据"+new Gson().toJson(codeTemplates));
         showHintDialog();
 
 
