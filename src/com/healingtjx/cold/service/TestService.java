@@ -10,6 +10,7 @@ import com.intellij.openapi.components.ServiceManager;
 public interface TestService {
     /**
      * test
+     *
      * @return
      */
     static TestService getInstance() {

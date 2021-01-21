@@ -10,6 +10,9 @@ import java.io.Serializable;
  **/
 public class TemplateConfig implements Serializable {
 
+    public TemplateConfig() {
+        super();
+    }
 
     public TemplateConfig(String controllerTemplate, String serviceTemplate, String implTemplate) {
         this.controllerTemplate = controllerTemplate;

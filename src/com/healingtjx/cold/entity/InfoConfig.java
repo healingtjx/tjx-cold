@@ -30,6 +30,10 @@ public class InfoConfig implements Serializable {
      */
     private int pattern;
 
+    public InfoConfig() {
+        super();
+    }
+
     public InfoConfig(String controllerPackage, String servicePackage, String implPackage, int pattern) {
         this.controllerPackage = controllerPackage;
         this.servicePackage = servicePackage;

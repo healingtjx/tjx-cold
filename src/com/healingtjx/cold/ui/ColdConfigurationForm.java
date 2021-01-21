@@ -48,4 +48,14 @@ public class ColdConfigurationForm {
     public InfoConfig getInfoConfigInputs() {
         return infoConfigEditPane.getInputs();
     }
+
+
+    /**
+     * 获取 模板配置数据
+     *
+     * @return
+     */
+    public Map<String, TemplateConfig> getTemplateConfigList() {
+        return templateEditPane.getTemplateConfigList();
+    }
 }

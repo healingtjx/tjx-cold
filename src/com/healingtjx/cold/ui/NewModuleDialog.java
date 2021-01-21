@@ -1,8 +1,5 @@
 package com.healingtjx.cold.ui;
 
-import com.healingtjx.cold.storage.SettingsStorage;
-import com.intellij.openapi.components.ServiceManager;
-
 import javax.swing.*;
 import java.awt.event.*;
 

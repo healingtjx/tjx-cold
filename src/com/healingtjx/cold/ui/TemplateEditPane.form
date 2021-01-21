@@ -50,6 +50,7 @@
                 <constraints/>
                 <properties>
                   <text value="重置当前配置"/>
+                  <visible value="false"/>
                 </properties>
               </component>
             </children>

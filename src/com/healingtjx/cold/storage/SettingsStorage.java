@@ -7,7 +7,6 @@ import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -50,7 +49,7 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
         //基础信息配置
         InfoConfig infoConfig = new InfoConfig("controller", "service", "service.impl", 0);
         //基础模板配置
-        templateConfigList = new HashMap<>(4);
+        templateConfigList = new HashMap<>(8);
         TemplateConfig simpleTemplate = new TemplateConfig("controller", "service", "impl");
         TemplateConfig intricacyTemplate = new TemplateConfig("intricacyController", "intricacyService", "intricacyImpl");
         templateConfigList.put(PatternEnum.SIMPLE.getKey(), simpleTemplate);
@@ -60,7 +59,7 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
 
 
     @Override
-    public void loadState(@NotNull SettingsStorage settingsStorage) {
+    public void loadState(SettingsStorage settingsStorage) {
         XmlSerializerUtil.copyBean(settingsStorage, this);
     }
 
@@ -76,5 +75,9 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
 
     public Map<String, TemplateConfig> getTemplateConfigList() {
         return templateConfigList;
+    }
+
+    public void setTemplateConfigList(Map<String, TemplateConfig> templateConfigList) {
+        this.templateConfigList = templateConfigList;
     }
 }

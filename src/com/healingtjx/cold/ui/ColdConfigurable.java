@@ -1,6 +1,7 @@
 package com.healingtjx.cold.ui;
 
 import com.healingtjx.cold.entity.InfoConfig;
+import com.healingtjx.cold.entity.TemplateConfig;
 import com.healingtjx.cold.storage.SettingsStorage;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.options.Configurable;
@@ -11,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
+import java.util.Map;
 
 /**
  * @Author: tjx
@@ -59,14 +61,19 @@ public class ColdConfigurable implements SearchableConfigurable, Configurable.No
     @Override
     public boolean isModified() {
         InfoConfig infoConfigInputs = configurationForm.getInfoConfigInputs();
+        Map<String, TemplateConfig> configList = configurationForm.getTemplateConfigList();
         //校验
-        return infoConfigInputs == null ? false : true;
+        return (infoConfigInputs == null || configList == null) ? false : true;
     }
 
     @Override
     public void apply() throws ConfigurationException {
-        //保存
+        System.out.println("apply......");
+        //保存 基本配置信息
         InfoConfig infoConfigInputs = configurationForm.getInfoConfigInputs();
         settingsStorage.setInfoConfig(infoConfigInputs);
+        //保存模板配置信息
+        Map<String, TemplateConfig> configList = configurationForm.getTemplateConfigList();
+        settingsStorage.setTemplateConfigList(configList);
     }
 }

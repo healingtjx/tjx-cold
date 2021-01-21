@@ -2,7 +2,6 @@ package com.healingtjx.cold.action;
 
 import com.healingtjx.cold.service.TestService;
 import com.healingtjx.cold.storage.SettingsStorage;
-import com.healingtjx.cold.storage.TestStorage;
 import com.healingtjx.cold.ui.NewModuleDialog;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -19,7 +18,6 @@ public class TestAction extends AnAction {
 
     private TestService testService;
 
-    private TestStorage testStorage;
 
     private SettingsStorage settingsStorage;
 
@@ -30,13 +28,7 @@ public class TestAction extends AnAction {
 
         if (settingsStorage == null) {
             settingsStorage = ServiceManager.getService(SettingsStorage.class);
-        }
 
-        if (testStorage == null) {
-            TestStorage.MyState state = new TestStorage.MyState();
-            state.setValue("123123123");
-            testStorage = new TestStorage();
-            testStorage.loadState(state);
         }
     }
 
