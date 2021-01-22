@@ -68,7 +68,6 @@ public class ColdConfigurable implements SearchableConfigurable, Configurable.No
 
     @Override
     public void apply() throws ConfigurationException {
-        System.out.println("apply......");
         //保存 基本配置信息
         InfoConfig infoConfigInputs = configurationForm.getInfoConfigInputs();
         settingsStorage.setInfoConfig(infoConfigInputs);
@@ -76,4 +75,15 @@ public class ColdConfigurable implements SearchableConfigurable, Configurable.No
         Map<String, TemplateConfig> configList = configurationForm.getTemplateConfigList();
         settingsStorage.setTemplateConfigList(configList);
     }
+
+
+    @Override
+    public void reset() {
+        //重新加载数据
+//        settingsStorage.loadDefaultSettings();
+//        configurationForm.refresh(settingsStorage);
+    }
+
+
+
 }

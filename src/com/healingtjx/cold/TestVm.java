@@ -1,5 +1,6 @@
 package com.healingtjx.cold;
 
+import com.healingtjx.cold.utils.FileUtil;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
@@ -12,7 +13,17 @@ import java.io.*;
  **/
 public class TestVm {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+
+        System.out.println(FileUtil.readBySrc("/template/controller.vm"));
+
+
+        int i = 1;
+        if (i == 1) {
+            return;
+        }
+
         String content = "package ${package}.controller;\n" +
                 "\n" +
                 "import io.swagger.annotations.Api;\n" +

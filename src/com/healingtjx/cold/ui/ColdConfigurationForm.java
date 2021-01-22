@@ -20,6 +20,27 @@ public class ColdConfigurationForm {
     private TemplateEditPane templateEditPane;
 
     public ColdConfigurationForm(SettingsStorage settingsStorage) {
+        loadBySettingsStorage(settingsStorage);
+    }
+
+    /**
+     * 刷新配置
+     *
+     * @param settingsStorage
+     */
+    public void refresh(SettingsStorage settingsStorage) {
+        tabbedPane.removeAll();
+        loadBySettingsStorage(settingsStorage);
+
+    }
+
+
+    /**
+     * 加载配置
+     *
+     * @param settingsStorage
+     */
+    public void loadBySettingsStorage(SettingsStorage settingsStorage) {
         // 获取配置信息
         InfoConfig infoConfig = settingsStorage.getInfoConfig();
         Map<String, TemplateConfig> templateConfigList = settingsStorage.getTemplateConfigList();

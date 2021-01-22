@@ -1,12 +1,13 @@
 package com.healingtjx.cold.action;
 
-import com.healingtjx.cold.service.TestService;
+import com.healingtjx.cold.service.GenerateService;
 import com.healingtjx.cold.storage.SettingsStorage;
 import com.healingtjx.cold.ui.NewModuleDialog;
+import com.intellij.ide.IdeView;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.components.ServiceManager;
-import org.apache.velocity.VelocityContext;
 
 import java.awt.*;
 
@@ -15,16 +16,16 @@ import java.awt.*;
  * @Description:
  * @Date: 创建于10:59 2021-01-11
  **/
-public class TestAction extends AnAction {
+public class NewModuleAction extends AnAction {
 
-    private TestService testService;
+    private GenerateService generateService;
 
 
     private SettingsStorage settingsStorage;
 
-    public TestAction() {
-        if (testService == null) {
-            testService = ServiceManager.getService(TestService.class);
+    public NewModuleAction() {
+        if (generateService == null) {
+            generateService = ServiceManager.getService(GenerateService.class);
         }
 
         if (settingsStorage == null) {
@@ -35,19 +36,19 @@ public class TestAction extends AnAction {
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-        // TODO: insert action logic here
-        //模拟调用service
-
-        showHintDialog();
-
+        //获取当前目录
+        IdeView ideView = e.getRequiredData(LangDataKeys.IDE_VIEW);
+        String currentDirectory = ideView.getOrChooseDirectory().getVirtualFile().getPath();
+        //显示界面
+        showHintDialog(currentDirectory);
     }
 
 
     /**
      * 显示提示对话框
      */
-    private void showHintDialog() {
-        NewModuleDialog dialog = new NewModuleDialog();
+    private void showHintDialog(String currentDirectory) {
+        NewModuleDialog dialog = new NewModuleDialog(currentDirectory,generateService);
         dialog.setTitle("New Module");
         dialog.setPreferredSize(new Dimension(300, 180));
         dialog.pack();

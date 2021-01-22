@@ -39,6 +39,10 @@ public class TemplateEditPane {
     private TemplateConfig currentTemplate;
 
     public TemplateEditPane(Map<String, TemplateConfig> templateConfigList) {
+
+        if(templateConfigList == null){
+            return;
+        }
         //加载数据
         this.templateConfigList = templateConfigList;
 
@@ -68,6 +72,7 @@ public class TemplateEditPane {
      * 根据 模板配置加载数据
      */
     private void loadByTemplateConfigByKey(String key) {
+
         TemplateConfig templateConfig = templateConfigList.get(key);
         String controllerTemplate = templateConfig.getControllerTemplate();
         textArea.setText(controllerTemplate);

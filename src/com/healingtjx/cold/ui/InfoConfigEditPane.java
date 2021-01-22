@@ -21,6 +21,9 @@ public class InfoConfigEditPane {
 
 
     public InfoConfigEditPane(InfoConfig config) {
+        if(config == null){
+            return;
+        }
         loadByConfig(config);
     }
 

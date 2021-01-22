@@ -1,5 +1,7 @@
 package com.healingtjx.cold.ui;
 
+import com.healingtjx.cold.service.GenerateService;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -12,8 +14,8 @@ public class NewModuleDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonSuccess;
     private JButton buttonCancel;
-    private JTextField textField1;
-    private JTextField textField2;
+    private JTextField nameTextField;
+    private JTextField packageTextField;
     private JRadioButton radioButton1;
     private JRadioButton radioButton2;
     private ButtonGroup buttonGroup;
@@ -21,53 +23,49 @@ public class NewModuleDialog extends JDialog {
     private JPanel panel2;
     private JPanel panel3;
 
-    public NewModuleDialog() {
+
+    /**
+     * 当前选择目录
+     */
+    private String currentDirectory;
+    private GenerateService generateService;
+
+    public NewModuleDialog(String currentDirectory, GenerateService generateService) {
+        this.currentDirectory = currentDirectory;
+        this.generateService = generateService;
         buttonGroup = new ButtonGroup();
         buttonGroup.add(radioButton1);
         buttonGroup.add(radioButton2);
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonSuccess);
-
-        buttonSuccess.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onSuccess();
-            }
-        });
-
-        buttonCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() when cross is clicked
+        //设置事件监听
+        buttonSuccess.addActionListener(e -> successListener());
+        buttonCancel.addActionListener(e -> cancelListener());
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                onCancel();
+                cancelListener();
             }
         });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        contentPane.registerKeyboardAction(e -> cancelListener(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onSuccess() {
+    /**
+     * 确认事件
+     */
+    private void successListener() {
+        String name = nameTextField.getText();
+        generateService.createTemplateCode(currentDirectory, name);
 
-        System.out.println("cheng l ");
         dispose();
     }
 
-    private void onCancel() {
+    /**
+     * 取消事件
+     */
+    private void cancelListener() {
         dispose();
     }
 

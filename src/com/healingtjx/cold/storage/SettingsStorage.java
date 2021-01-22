@@ -3,6 +3,7 @@ package com.healingtjx.cold.storage;
 import com.healingtjx.cold.entity.InfoConfig;
 import com.healingtjx.cold.entity.PatternEnum;
 import com.healingtjx.cold.entity.TemplateConfig;
+import com.healingtjx.cold.utils.FileUtil;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
@@ -45,12 +46,18 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
     /**
      * 加载默认数据
      */
-    private void loadDefaultSettings() {
+    public void loadDefaultSettings() {
+        //读取文件里面配置
+
         //基础信息配置
-        InfoConfig infoConfig = new InfoConfig("controller", "service", "service.impl", 0);
+        InfoConfig infoConfig = new InfoConfig("controller", "service", "service/impl", 0);
         //基础模板配置
         templateConfigList = new HashMap<>(8);
-        TemplateConfig simpleTemplate = new TemplateConfig("controller", "service", "impl");
+
+        TemplateConfig simpleTemplate = new TemplateConfig(FileUtil.readBySrc("/template/controller.vm")
+                , FileUtil.readBySrc("/template/service.vm")
+                , FileUtil.readBySrc("/template/impl.vm")
+        );
         TemplateConfig intricacyTemplate = new TemplateConfig("intricacyController", "intricacyService", "intricacyImpl");
         templateConfigList.put(PatternEnum.SIMPLE.getKey(), simpleTemplate);
         templateConfigList.put(PatternEnum.INTRICACY.getKey(), intricacyTemplate);
