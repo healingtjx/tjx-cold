@@ -1,0 +1,11 @@
+package ${package};
+
+import ${servicePackage}.${serviceFileName};
+
+/**
+* @Author: tjx
+* @Description: 描述
+* @Date: 创建于${time}
+**/
+public class ${fileName} implements ${serviceFileName} {
+}

@@ -1,0 +1,9 @@
+package ${package};
+
+/**
+* @Author: tjx
+* @Description: 描述
+* @Date: 创建于${time}
+**/
+public interface ${fileName} {
+}

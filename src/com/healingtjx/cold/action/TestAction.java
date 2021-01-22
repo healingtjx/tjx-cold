@@ -6,6 +6,7 @@ import com.healingtjx.cold.ui.NewModuleDialog;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.components.ServiceManager;
+import org.apache.velocity.VelocityContext;
 
 import java.awt.*;
 
@@ -38,7 +39,6 @@ public class TestAction extends AnAction {
         //模拟调用service
 
         showHintDialog();
-
 
     }
 
