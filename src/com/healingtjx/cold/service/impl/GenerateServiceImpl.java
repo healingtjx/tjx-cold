@@ -57,13 +57,37 @@ public class GenerateServiceImpl implements GenerateService {
 
         //生成controller
         VelocityContext controllerContext = new VelocityContext();
-        controllerContext.put("package", controllerFileSrc);
+        controllerContext.put("servicePackage", StringUtil.getPackageBySrc(serviceFileSrc));
+        controllerContext.put("serviceFileName",  name + "Service");
+        controllerContext.put("package", StringUtil.getPackageBySrc(controllerFileSrc));
         controllerContext.put("time", time);
         controllerContext.put("fileName", name + "Controller");
         controllerContext.put("serviceFileName", name + "Service");
-        controllerContext.put("serviceFileName", StringUtil.toLowerCaseFirstOne(name + "Service"));
-        String controllerOut = controllerFileSrc + "/" + name + "Controller";
+        controllerContext.put("serviceName", StringUtil.toLowerCaseFirstOne(name + "Service"));
+        String controllerOut = controllerFileSrc + "/" + name + "Controller.java";
         VmUtil.create(controllerContext, templateConfig.getControllerTemplate(), controllerOut);
+
+
+        //生成service
+        VelocityContext serviceContext = new VelocityContext();
+        serviceContext.put("package", StringUtil.getPackageBySrc(serviceFileSrc));
+        serviceContext.put("time", time);
+        serviceContext.put("fileName", name + "Service");
+        String serviceOut = serviceFileSrc + "/" + name + "Service.java";
+        VmUtil.create(serviceContext, templateConfig.getServiceTemplate(), serviceOut);
+
+        //生成impl
+        VelocityContext implContext = new VelocityContext();
+        implContext.put("servicePackage", StringUtil.getPackageBySrc(serviceFileSrc));
+        implContext.put("serviceFileName",  name + "Service");
+        implContext.put("package", StringUtil.getPackageBySrc(implFileSrc));
+        implContext.put("time", time);
+        implContext.put("fileName", name + "ServiceImpl");
+        String implOut = implFileSrc + "/" + name + "ServiceImpl.java";
+        VmUtil.create(implContext, templateConfig.getImplTemplate(), implOut);
+
+
+
 
     }
 }

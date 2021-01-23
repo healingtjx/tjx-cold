@@ -1,9 +1,12 @@
 package com.healingtjx.cold.ui;
 
 import com.healingtjx.cold.service.GenerateService;
+import com.intellij.openapi.vfs.VirtualFile;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * @Author: tjx
@@ -27,11 +30,11 @@ public class NewModuleDialog extends JDialog {
     /**
      * 当前选择目录
      */
-    private String currentDirectory;
+    VirtualFile virtualFile;
     private GenerateService generateService;
 
-    public NewModuleDialog(String currentDirectory, GenerateService generateService) {
-        this.currentDirectory = currentDirectory;
+    public NewModuleDialog(VirtualFile virtualFile, GenerateService generateService) {
+        this.virtualFile = virtualFile;
         this.generateService = generateService;
         buttonGroup = new ButtonGroup();
         buttonGroup.add(radioButton1);
@@ -57,8 +60,9 @@ public class NewModuleDialog extends JDialog {
      */
     private void successListener() {
         String name = nameTextField.getText();
-        generateService.createTemplateCode(currentDirectory, name);
-
+        generateService.createTemplateCode(virtualFile.getPath(), name);
+        //刷新
+        virtualFile.refresh(true,true);
         dispose();
     }
 
