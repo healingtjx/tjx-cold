@@ -1,5 +1,8 @@
 package com.healingtjx.cold.ui;
 
+import com.google.gson.Gson;
+import com.healingtjx.cold.entity.InfoConfig;
+import com.healingtjx.cold.entity.PatternEnum;
 import com.healingtjx.cold.service.GenerateService;
 import com.intellij.openapi.vfs.VirtualFile;
 
@@ -31,10 +34,15 @@ public class NewModuleDialog extends JDialog {
      * 当前选择目录
      */
     VirtualFile virtualFile;
+    /**
+     * 当前配置
+     */
+    InfoConfig infoConfig;
     private GenerateService generateService;
 
-    public NewModuleDialog(VirtualFile virtualFile, GenerateService generateService) {
+    public NewModuleDialog(VirtualFile virtualFile, GenerateService generateService, InfoConfig infoConfig) {
         this.virtualFile = virtualFile;
+        this.infoConfig = infoConfig;
         this.generateService = generateService;
         buttonGroup = new ButtonGroup();
         buttonGroup.add(radioButton1);
@@ -42,6 +50,12 @@ public class NewModuleDialog extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonSuccess);
+        //判断当前模式
+        int pattern = infoConfig.getPattern();
+        //只有 默认模式才需要配置 包名
+        if (pattern == 0) {
+            panel2.setVisible(false);
+        }
         //设置事件监听
         buttonSuccess.addActionListener(e -> successListener());
         buttonCancel.addActionListener(e -> cancelListener());
@@ -60,9 +74,13 @@ public class NewModuleDialog extends JDialog {
      */
     private void successListener() {
         String name = nameTextField.getText();
-        generateService.createTemplateCode(virtualFile.getPath(), name);
+
+        boolean selected = radioButton1.isSelected();
+        String patternKey = selected ? PatternEnum.SIMPLE.getKey() : PatternEnum.INTRICACY.getKey();
+
+        generateService.createTemplateCode(virtualFile.getPath(), name, patternKey);
         //刷新
-        virtualFile.refresh(true,true);
+        virtualFile.refresh(true, true);
         dispose();
     }
 

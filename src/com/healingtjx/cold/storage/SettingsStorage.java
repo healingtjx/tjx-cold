@@ -58,7 +58,10 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
                 , FileUtil.readBySrc("/template/service.vm")
                 , FileUtil.readBySrc("/template/impl.vm")
         );
-        TemplateConfig intricacyTemplate = new TemplateConfig("intricacyController", "intricacyService", "intricacyImpl");
+        TemplateConfig intricacyTemplate = new TemplateConfig(FileUtil.readBySrc("/template/intricacyController.vm")
+                , FileUtil.readBySrc("/template/intricacyService.vm")
+                , FileUtil.readBySrc("/template/intricacyImpl.vm")
+        );
         templateConfigList.put(PatternEnum.SIMPLE.getKey(), simpleTemplate);
         templateConfigList.put(PatternEnum.INTRICACY.getKey(), intricacyTemplate);
         this.infoConfig = infoConfig;

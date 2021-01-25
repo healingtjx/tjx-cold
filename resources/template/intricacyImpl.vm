@@ -1,0 +1,34 @@
+package ${package};
+
+import ${servicePackage}.${serviceFileName};
+import com.healing.tjx.common.api.CommonResult;
+import com.healing.tjx.common.api.PageParam;
+import com.healing.tjx.common.api.PageResult;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+/**
+ * @Author: tjx
+ * @Description: 描述
+ * @Date:  创建于${time}
+ **/
+@Slf4j
+@Service
+public class ${fileName} implements ${serviceFileName} {
+
+    @Override
+    public PageResult list(PageParam pageParam) {
+        return null;
+    }
+
+    @Override
+    public CommonResult<Long> change() {
+        return null;
+    }
+
+    @Override
+    public CommonResult<Integer> delete(int id) {
+        return null;
+    }
+
+}

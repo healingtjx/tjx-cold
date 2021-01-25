@@ -1,5 +1,6 @@
 package com.healingtjx.cold.action;
 
+import com.healingtjx.cold.entity.InfoConfig;
 import com.healingtjx.cold.service.GenerateService;
 import com.healingtjx.cold.storage.SettingsStorage;
 import com.healingtjx.cold.ui.NewModuleDialog;
@@ -51,7 +52,10 @@ public class NewModuleAction extends AnAction {
      * 显示提示对话框
      */
     private void showHintDialog(VirtualFile virtualFile) {
-        NewModuleDialog dialog = new NewModuleDialog(virtualFile, generateService);
+        //获取当前配置
+        InfoConfig infoConfig = settingsStorage.getInfoConfig();
+
+        NewModuleDialog dialog = new NewModuleDialog(virtualFile, generateService,infoConfig);
         dialog.setTitle("New Module");
         dialog.setPreferredSize(new Dimension(300, 180));
         dialog.pack();

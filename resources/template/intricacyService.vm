@@ -1,0 +1,38 @@
+package ${package};
+
+import com.healing.tjx.common.api.CommonResult;
+import com.healing.tjx.common.api.PageResult;
+import org.springframework.stereotype.Service;
+
+/**
+ * @Author: tjx
+ * @Description:
+ * @Date: 创建于${time}
+ **/
+@Service
+public interface ${fileName} {
+
+    /**
+     * 列表
+     *
+     * @return CommonResult
+     */
+    PageResult list();
+
+
+    /**
+     * 修改/新增
+     *
+     * @return CommonResult<Integer> 用户id
+     */
+    CommonResult<Long> change();
+
+
+    /**
+     * 删除
+     *
+     * @param id
+     * @return
+     */
+    CommonResult<Integer> delete(int id);
+}

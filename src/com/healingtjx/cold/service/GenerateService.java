@@ -12,5 +12,5 @@ public interface GenerateService {
      * @param filePath 生成文件路径
      * @param name     模块名称
      */
-    void createTemplateCode(String filePath,String name);
+    void createTemplateCode(String filePath,String name,String patternKey);
 }

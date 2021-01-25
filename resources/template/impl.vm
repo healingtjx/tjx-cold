@@ -1,11 +1,15 @@
 package ${package};
 
 import ${servicePackage}.${serviceFileName};
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 /**
-* @Author: tjx
-* @Description: 描述
-* @Date: 创建于${time}
-**/
+ * @Author: tjx
+ * @Description: 描述
+ * @Date: 创建于${time}
+ **/
+@Slf4j
+@Service
 public class ${fileName} implements ${serviceFileName} {
 }

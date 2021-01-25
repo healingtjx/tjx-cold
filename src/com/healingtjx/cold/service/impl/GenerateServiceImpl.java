@@ -35,7 +35,7 @@ public class GenerateServiceImpl implements GenerateService {
 
 
     @Override
-    public void createTemplateCode(String filePath, String name) {
+    public void createTemplateCode(String filePath, String name,String patternKey) {
         //加载配置
         InfoConfig infoConfig = settingsStorage.getInfoConfig();
 
@@ -53,7 +53,7 @@ public class GenerateServiceImpl implements GenerateService {
 
         //获取模板
         Map<String, TemplateConfig> templateConfigList = settingsStorage.getTemplateConfigList();
-        TemplateConfig templateConfig = templateConfigList.get(PatternEnum.SIMPLE.getKey());
+        TemplateConfig templateConfig = templateConfigList.get(patternKey);
 
         //生成controller
         VelocityContext controllerContext = new VelocityContext();

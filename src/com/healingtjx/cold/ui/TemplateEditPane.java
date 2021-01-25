@@ -1,11 +1,15 @@
 package com.healingtjx.cold.ui;
 
+import com.google.gson.Gson;
 import com.healingtjx.cold.entity.PatternEnum;
 import com.healingtjx.cold.entity.SelectItem;
 import com.healingtjx.cold.entity.TemplateConfig;
 import com.healingtjx.cold.entity.TemplateItemEnum;
+import com.intellij.openapi.ui.Messages;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.util.Map;
@@ -40,7 +44,7 @@ public class TemplateEditPane {
 
     public TemplateEditPane(Map<String, TemplateConfig> templateConfigList) {
 
-        if(templateConfigList == null){
+        if (templateConfigList == null) {
             return;
         }
         //加载数据
@@ -60,6 +64,8 @@ public class TemplateEditPane {
 
         //加载简单模式数据
         loadByTemplateConfigByKey(PatternEnum.SIMPLE.getKey());
+
+
     }
 
 
@@ -74,12 +80,13 @@ public class TemplateEditPane {
     private void loadByTemplateConfigByKey(String key) {
 
         TemplateConfig templateConfig = templateConfigList.get(key);
-        String controllerTemplate = templateConfig.getControllerTemplate();
-        textArea.setText(controllerTemplate);
+        //根据位置获取内容
+        String templateItemKey = (String) templateComboBox.getSelectedItem();
+        String value = templateConfig.getByKey(templateItemKey);
+        textArea.setText(value);
         this.currentTemplate = templateConfig;
         //加入监听 代码块切换
         templateComboBox.addItemListener(e -> templateComboBoxChangeListener(e));
-
     }
 
 
@@ -89,6 +96,13 @@ public class TemplateEditPane {
      * @param e
      */
     public void templateComboBoxChangeListener(ItemEvent e) {
+
+        if (e.getStateChange() == ItemEvent.DESELECTED) {
+            SelectItem item = (SelectItem) patternComboBox.getSelectedItem();
+            String templateItemKey = (String) e.getItem();
+            isModify(item.getKey(), templateItemKey);
+        }
+
         if (e.getStateChange() == ItemEvent.SELECTED) {
             String key = (String) e.getItem();
             String value = currentTemplate.getByKey(key);
@@ -102,6 +116,13 @@ public class TemplateEditPane {
      * @param e
      */
     public void patternComboBoxChangeListener(ItemEvent e) {
+        if (e.getStateChange() == ItemEvent.DESELECTED) {
+            SelectItem item = (SelectItem) e.getItem();
+            String templateItemKey = (String) templateComboBox.getSelectedItem();
+            isModify(item.getKey(), templateItemKey);
+
+        }
+
         if (e.getStateChange() == ItemEvent.SELECTED) {
             SelectItem item = (SelectItem) e.getItem();
             loadByTemplateConfigByKey(item.getKey());
@@ -134,6 +155,27 @@ public class TemplateEditPane {
         templateConfig.setByKey(templateKey, text);
     }
 
+
+    /**
+     * 是否修改
+     *
+     * @param patternKey
+     * @param templateItemKey
+     */
+    public void isModify(String patternKey, String templateItemKey) {
+        TemplateConfig templateConfig = templateConfigList.get(patternKey);
+        String value = templateConfig.getByKey(templateItemKey);
+        String text = textArea.getText();
+        if (!value.equals(text)) {
+            int i = Messages.showOkCancelDialog("是否需要保存?", "有修改的内容", null);
+            if (i == 0) {
+                //同意保存
+                templateConfig.setByKey(templateItemKey, text);
+            }
+        }
+
+
+    }
 
     /**
      * 获取修改后的数据

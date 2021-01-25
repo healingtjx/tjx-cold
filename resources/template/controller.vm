@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
-* @Author: tjx
-* @Description: 描述
-* @Date: 创建于${time}
-**/
+ * @Author: tjx
+ * @Description: 描述
+ * @Date: 创建于${time}
+ **/
 @Slf4j
 @RestController
 @RequestMapping("/${fileName}")
