@@ -21,7 +21,7 @@ public class FileUtil {
      */
     public static String readBySrc(String src) {
         InputStream in = FileUtil.class.getResourceAsStream(src);
-        byte[] b = new byte[1024];
+        byte[] b = new byte[1024 * 4];
         int len = 0;
         int temp;
         try {
@@ -46,9 +46,9 @@ public class FileUtil {
     public static void mkdirBySrc(String src) {
         File file = new File(src);
         //如果文件夹不存在
-        if(!file.exists()){
+        if (!file.exists()) {
             //创建文件夹
-            file.mkdir();
+            file.mkdirs();
         }
     }
 }

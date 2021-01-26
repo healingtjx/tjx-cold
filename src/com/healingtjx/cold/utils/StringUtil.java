@@ -27,6 +27,20 @@ public class StringUtil {
     }
 
     /**
+     * 判断是否为空
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isNull(String str) {
+        if (str == null || str.trim().length() == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * 根据路径生成 package
      *
      * @param src 路径
@@ -40,8 +54,4 @@ public class StringUtil {
         return packageSrc.length() > 0 ? packageSrc.replaceAll("/", ".") : null;
     }
 
-    public static void main(String[] args) {
-        System.out.println(getPackageBySrc("C:/work/zhongyitang-vehicle-service/test/src/main/java/com/test/tjx/test"));
-
-    }
 }

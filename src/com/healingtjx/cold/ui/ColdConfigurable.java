@@ -1,12 +1,16 @@
 package com.healingtjx.cold.ui;
 
+import com.google.gson.Gson;
 import com.healingtjx.cold.entity.InfoConfig;
 import com.healingtjx.cold.entity.TemplateConfig;
 import com.healingtjx.cold.storage.SettingsStorage;
+import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SearchableConfigurable;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -33,7 +37,10 @@ public class ColdConfigurable implements SearchableConfigurable, Configurable.No
     private SettingsStorage settingsStorage;
 
     public ColdConfigurable() {
-        settingsStorage = ServiceManager.getService(SettingsStorage.class);
+        //获取project
+        Project defaultProject = ProjectManager.getInstance().getDefaultProject();
+        settingsStorage = ServiceManager.getService(defaultProject,SettingsStorage.class);
+        settingsStorage.getState();
     }
 
 
@@ -83,7 +90,6 @@ public class ColdConfigurable implements SearchableConfigurable, Configurable.No
 //        settingsStorage.loadDefaultSettings();
 //        configurationForm.refresh(settingsStorage);
     }
-
 
 
 }

@@ -2,8 +2,11 @@ package com.healingtjx.cold.ui;
 
 import com.google.gson.Gson;
 import com.healingtjx.cold.entity.InfoConfig;
+import com.healingtjx.cold.entity.ModelEnum;
 import com.healingtjx.cold.entity.PatternEnum;
 import com.healingtjx.cold.service.GenerateService;
+import com.healingtjx.cold.utils.StringUtil;
+import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 
 import javax.swing.*;
@@ -74,11 +77,19 @@ public class NewModuleDialog extends JDialog {
      */
     private void successListener() {
         String name = nameTextField.getText();
+        String packageName = packageTextField.getText();
+        int pattern = infoConfig.getPattern();
+        if (pattern != ModelEnum.DEFAULT.getModel()) {
+            //除开默认模式其他的都需要验证包名
+            if (StringUtil.isNull(packageName)) {
+                Messages.showMessageDialog("包名不能为空！", "提示", null);
+                return;
+            }
+        }
 
         boolean selected = radioButton1.isSelected();
         String patternKey = selected ? PatternEnum.SIMPLE.getKey() : PatternEnum.INTRICACY.getKey();
-
-        generateService.createTemplateCode(virtualFile.getPath(), name, patternKey);
+        generateService.createTemplateCode(virtualFile.getPath(), name, packageName, patternKey, pattern);
         //刷新
         virtualFile.refresh(true, true);
         dispose();

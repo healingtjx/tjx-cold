@@ -31,9 +31,8 @@
         <applicationService serviceInterface="com.healingtjx.cold.service.GenerateService"
                             serviceImplementation="com.healingtjx.cold.service.impl.GenerateServiceImpl"/>
 
-        <applicationService serviceInterface="com.healingtjx.cold.storage.SettingsStorage"
+        <projectService serviceInterface="com.healingtjx.cold.storage.SettingsStorage"
                             serviceImplementation="com.healingtjx.cold.storage.SettingsStorage"/>
-
     </extensions>
 
     <actions>

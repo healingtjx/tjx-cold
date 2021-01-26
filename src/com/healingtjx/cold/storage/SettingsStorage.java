@@ -36,7 +36,7 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
     @Nullable
     @Override
     public SettingsStorage getState() {
-
+        System.out.println("123123123");
         if (infoConfig == null) {
             loadDefaultSettings();
         }

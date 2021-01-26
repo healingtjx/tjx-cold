@@ -9,6 +9,8 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.components.ServiceManager;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
 
 import java.awt.*;
@@ -31,14 +33,15 @@ public class NewModuleAction extends AnAction {
         }
 
         if (settingsStorage == null) {
-            settingsStorage = ServiceManager.getService(SettingsStorage.class);
+            //获取project
+            Project defaultProject = ProjectManager.getInstance().getDefaultProject();
+            settingsStorage = ServiceManager.getService(defaultProject,SettingsStorage.class);
 
         }
     }
 
     @Override
     public void actionPerformed(AnActionEvent e) {
-
         //获取当前目录
         IdeView ideView = e.getRequiredData(LangDataKeys.IDE_VIEW);
         VirtualFile virtualFile = ideView.getOrChooseDirectory().getVirtualFile();

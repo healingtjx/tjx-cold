@@ -17,11 +17,12 @@ public class InfoConfigEditPane {
     private JRadioButton defaultPattern;
     private JRadioButton onePattern;
     private JRadioButton twoPattern;
+    private JRadioButton threePattern;
     private ButtonGroup group;
 
 
     public InfoConfigEditPane(InfoConfig config) {
-        if(config == null){
+        if (config == null) {
             return;
         }
         loadByConfig(config);
@@ -39,6 +40,7 @@ public class InfoConfigEditPane {
         group.add(defaultPattern);
         group.add(onePattern);
         group.add(twoPattern);
+        group.add(threePattern);
         int pattern = config.getPattern();
         switch (pattern) {
             case 1: {
@@ -47,6 +49,10 @@ public class InfoConfigEditPane {
             }
             case 2: {
                 twoPattern.setSelected(true);
+                break;
+            }
+            case 3: {
+                threePattern.setSelected(true);
                 break;
             }
             default: {
@@ -64,8 +70,9 @@ public class InfoConfigEditPane {
     public InfoConfig getInputs() {
         boolean defaultSelected = defaultPattern.isSelected();
         boolean oneSelected = onePattern.isSelected();
+        boolean twoSelected = twoPattern.isSelected();
         return new InfoConfig(controllerText.getText(), serviceText.getText(), implText.getText()
-                , defaultSelected ? 0 : (oneSelected ? 1 : 2));
+                , defaultSelected ? 0 : (oneSelected ? 1 : (twoSelected ? 2 : 3)));
     }
 
 

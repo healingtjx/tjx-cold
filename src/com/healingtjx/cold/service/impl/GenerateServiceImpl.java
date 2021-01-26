@@ -1,19 +1,19 @@
 package com.healingtjx.cold.service.impl;
 
-import com.healingtjx.cold.entity.InfoConfig;
-import com.healingtjx.cold.entity.PatternEnum;
-import com.healingtjx.cold.entity.TemplateConfig;
-import com.healingtjx.cold.entity.TemplateItemEnum;
+import com.healingtjx.cold.entity.*;
 import com.healingtjx.cold.service.GenerateService;
 import com.healingtjx.cold.storage.SettingsStorage;
 import com.healingtjx.cold.utils.FileUtil;
 import com.healingtjx.cold.utils.StringUtil;
 import com.healingtjx.cold.utils.VmUtil;
 import com.intellij.openapi.components.ServiceManager;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
 import org.apache.velocity.VelocityContext;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,20 +29,64 @@ public class GenerateServiceImpl implements GenerateService {
 
     public GenerateServiceImpl() {
         if (settingsStorage == null) {
-            settingsStorage = ServiceManager.getService(SettingsStorage.class);
+            //获取project
+            Project defaultProject = ProjectManager.getInstance().getDefaultProject();
+            settingsStorage = ServiceManager.getService(defaultProject,SettingsStorage.class);
         }
     }
 
+    /**
+     * 根据 model 生成路径
+     *
+     * @param filePath
+     * @param infoConfig
+     * @param packageName
+     * @param model
+     * @return
+     */
+    private Map<String, String> getSrcByModel(String filePath, InfoConfig infoConfig, String packageName, int model) {
+        Map<String, String> srcMap = new HashMap<>(3);
+        //默认情况
+        if (ModelEnum.DEFAULT.getModel() == model) {
+            srcMap.put("controllerFileSrc", filePath + "/" + infoConfig.getControllerPackage());
+            srcMap.put("serviceFileSrc", filePath + "/" + infoConfig.getServicePackage());
+            srcMap.put("implFileSrc", filePath + "/" + infoConfig.getImplPackage());
+        }
+        //模式1 都需要 加包名
+        if (ModelEnum.MODEL_ONE.getModel() == model) {
+            srcMap.put("controllerFileSrc", filePath + "/" + infoConfig.getControllerPackage() + "/" + packageName);
+            srcMap.put("serviceFileSrc", filePath + "/" + infoConfig.getServicePackage() + "/" + packageName);
+            srcMap.put("implFileSrc", filePath + "/" + infoConfig.getImplPackage() + "/" + packageName);
+        }
+        //模式2 只有contrller 要加包名
+        if (ModelEnum.MODEL_TWO.getModel() == model) {
+            srcMap.put("controllerFileSrc", filePath + "/" + infoConfig.getControllerPackage() + "/" + packageName);
+            srcMap.put("serviceFileSrc", filePath + "/" + infoConfig.getServicePackage());
+            srcMap.put("implFileSrc", filePath + "/" + infoConfig.getImplPackage());
+        }
+        //模式3 只有 service 要加包名
+        if (ModelEnum.MODEL_THREE.getModel() == model) {
+            srcMap.put("controllerFileSrc", filePath + "/" + infoConfig.getControllerPackage());
+            srcMap.put("serviceFileSrc", filePath + "/" + infoConfig.getServicePackage() + "/" + packageName);
+            srcMap.put("implFileSrc", filePath + "/" + infoConfig.getImplPackage() + "/" + packageName);
+        }
+
+
+        return srcMap;
+    }
 
     @Override
-    public void createTemplateCode(String filePath, String name,String patternKey) {
+    public void createTemplateCode(String filePath, String name, String packageName, String patternKey, int model) {
         //加载配置
         InfoConfig infoConfig = settingsStorage.getInfoConfig();
+        //获取src
+        Map<String, String> srcByModel = getSrcByModel(filePath, infoConfig, packageName, model);
+
 
         //生成文件夹
-        String controllerFileSrc = filePath + "/" + infoConfig.getControllerPackage();
-        String serviceFileSrc = filePath + "/" + infoConfig.getServicePackage();
-        String implFileSrc = filePath + "/" + infoConfig.getImplPackage();
+        String controllerFileSrc = srcByModel.get("controllerFileSrc");
+        String serviceFileSrc = srcByModel.get("serviceFileSrc");
+        String implFileSrc = srcByModel.get("implFileSrc");
         //不存在就创建
         FileUtil.mkdirBySrc(controllerFileSrc);
         FileUtil.mkdirBySrc(serviceFileSrc);
@@ -58,7 +102,7 @@ public class GenerateServiceImpl implements GenerateService {
         //生成controller
         VelocityContext controllerContext = new VelocityContext();
         controllerContext.put("servicePackage", StringUtil.getPackageBySrc(serviceFileSrc));
-        controllerContext.put("serviceFileName",  name + "Service");
+        controllerContext.put("serviceFileName", name + "Service");
         controllerContext.put("package", StringUtil.getPackageBySrc(controllerFileSrc));
         controllerContext.put("time", time);
         controllerContext.put("fileName", name + "Controller");
@@ -79,15 +123,13 @@ public class GenerateServiceImpl implements GenerateService {
         //生成impl
         VelocityContext implContext = new VelocityContext();
         implContext.put("servicePackage", StringUtil.getPackageBySrc(serviceFileSrc));
-        implContext.put("serviceFileName",  name + "Service");
+        implContext.put("serviceFileName", name + "Service");
         implContext.put("package", StringUtil.getPackageBySrc(implFileSrc));
         implContext.put("time", time);
         implContext.put("fileName", name + "ServiceImpl");
         String implOut = implFileSrc + "/" + name + "ServiceImpl.java";
         VmUtil.create(implContext, templateConfig.getImplTemplate(), implOut);
-
-
-
-
     }
+
+
 }
