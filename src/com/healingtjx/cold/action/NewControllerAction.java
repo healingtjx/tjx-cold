@@ -10,14 +10,15 @@ import com.intellij.openapi.components.ServiceManager;
 /**
  * @Author: tjx
  * @Description:
- * @Date: 创建于10:59 2021-01-11
+ * @Date: 创建于15:28 2021-01-26
  **/
-public class NewModuleAction extends AnAction {
+public class NewControllerAction extends AnAction {
+
 
     private GenerateService generateService;
 
 
-    public NewModuleAction() {
+    public NewControllerAction() {
         if (generateService == null) {
             generateService = ServiceManager.getService(GenerateService.class);
         }
@@ -26,8 +27,6 @@ public class NewModuleAction extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
         //显示界面
-        HintDialogUtil.showHintDialog(e, generateService, GenerationStrategyEnum.ALL.getStrategy());
+        HintDialogUtil.showHintDialog(e, generateService, GenerationStrategyEnum.ONLY_CONTROLLER.getStrategy());
     }
-
-
 }

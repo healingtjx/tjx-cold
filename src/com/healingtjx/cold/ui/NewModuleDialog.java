@@ -44,9 +44,15 @@ public class NewModuleDialog extends JDialog {
      */
     SettingsStorage settingsStorage;
 
+    /**
+     * 当前策略
+     */
+    int generationStrategy;
+
     private GenerateService generateService;
 
-    public NewModuleDialog(VirtualFile virtualFile, GenerateService generateService, SettingsStorage settingsStorage) {
+    public NewModuleDialog(VirtualFile virtualFile, GenerateService generateService, SettingsStorage settingsStorage, int generationStrategy) {
+        this.generationStrategy = generationStrategy;
         this.virtualFile = virtualFile;
         this.settingsStorage = settingsStorage;
         this.generateService = generateService;
@@ -92,7 +98,7 @@ public class NewModuleDialog extends JDialog {
 
         boolean selected = radioButton1.isSelected();
         String patternKey = selected ? PatternEnum.SIMPLE.getKey() : PatternEnum.INTRICACY.getKey();
-        generateService.createTemplateCode(virtualFile.getPath(), name, packageName, patternKey, pattern, settingsStorage);
+        generateService.createTemplateCode(virtualFile.getPath(), name, packageName, patternKey, pattern, generationStrategy, settingsStorage);
         //刷新
         virtualFile.refresh(true, true);
         dispose();

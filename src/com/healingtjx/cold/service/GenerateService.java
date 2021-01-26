@@ -17,7 +17,8 @@ public interface GenerateService {
      * @param packageName 包名
      * @param patternKey
      * @param model       模式选择
+     * @param generationStrategy 生成策略
      * @param settingsStorage
      */
-    void createTemplateCode(String filePath, String name, String packageName, String patternKey, int model, SettingsStorage settingsStorage);
+    void createTemplateCode(String filePath, String name, String packageName, String patternKey, int model,int generationStrategy, SettingsStorage settingsStorage);
 }

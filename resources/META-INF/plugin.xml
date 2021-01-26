@@ -6,40 +6,38 @@
 
     <description><![CDATA[
       用于根据配置模板，快速生成controller,service,impl 代码
-      Enter short description for your plugin here.
     ]]></description>
 
     <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+      <li>version 1.0</li>
     ]]>
     </change-notes>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
     <idea-version since-build="173.0"/>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
-    <!-- uncomment to enable plugin in all products
-    <depends>com.intellij.modules.lang</depends>
-    -->
+
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
         <applicationConfigurable instance="com.healingtjx.cold.ui.ColdConfigurable"/>
-
         <applicationService serviceInterface="com.healingtjx.cold.service.GenerateService"
                             serviceImplementation="com.healingtjx.cold.service.impl.GenerateServiceImpl"/>
-
+        <!-- 存储要用 project -->
         <projectService serviceInterface="com.healingtjx.cold.storage.SettingsStorage"
                             serviceImplementation="com.healingtjx.cold.storage.SettingsStorage"/>
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
-        <action id="TestAction" class="com.healingtjx.cold.action.NewModuleAction" text="controller,service,impl"
+        <action id="NewModuleAction" class="com.healingtjx.cold.action.NewModuleAction" text="controller,service,impl"
                 description="快速生成controller,service,impl">
-            <add-to-group group-id="NewGroup" anchor="first"/>
+            <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewGroup1"/>
+        </action>
+        <action id="NewController" class="com.healingtjx.cold.action.NewControllerAction" text="controller"
+                description="快速生成controller">
+            <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewModuleAction"/>
+        </action>
+        <action id="NewService" class="com.healingtjx.cold.action.NewServiceAction" text="service,impl"
+                description="快速生成service">
+            <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewController"/>
         </action>
     </actions>
 
