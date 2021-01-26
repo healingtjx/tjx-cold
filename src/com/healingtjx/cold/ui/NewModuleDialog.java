@@ -5,6 +5,7 @@ import com.healingtjx.cold.entity.InfoConfig;
 import com.healingtjx.cold.entity.ModelEnum;
 import com.healingtjx.cold.entity.PatternEnum;
 import com.healingtjx.cold.service.GenerateService;
+import com.healingtjx.cold.storage.SettingsStorage;
 import com.healingtjx.cold.utils.StringUtil;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -37,15 +38,17 @@ public class NewModuleDialog extends JDialog {
      * 当前选择目录
      */
     VirtualFile virtualFile;
+
     /**
      * 当前配置
      */
-    InfoConfig infoConfig;
+    SettingsStorage settingsStorage;
+
     private GenerateService generateService;
 
-    public NewModuleDialog(VirtualFile virtualFile, GenerateService generateService, InfoConfig infoConfig) {
+    public NewModuleDialog(VirtualFile virtualFile, GenerateService generateService, SettingsStorage settingsStorage) {
         this.virtualFile = virtualFile;
-        this.infoConfig = infoConfig;
+        this.settingsStorage = settingsStorage;
         this.generateService = generateService;
         buttonGroup = new ButtonGroup();
         buttonGroup.add(radioButton1);
@@ -54,7 +57,7 @@ public class NewModuleDialog extends JDialog {
         setModal(true);
         getRootPane().setDefaultButton(buttonSuccess);
         //判断当前模式
-        int pattern = infoConfig.getPattern();
+        int pattern = settingsStorage.getInfoConfig().getPattern();
         //只有 默认模式才需要配置 包名
         if (pattern == 0) {
             panel2.setVisible(false);
@@ -78,7 +81,7 @@ public class NewModuleDialog extends JDialog {
     private void successListener() {
         String name = nameTextField.getText();
         String packageName = packageTextField.getText();
-        int pattern = infoConfig.getPattern();
+        int pattern = settingsStorage.getInfoConfig().getPattern();
         if (pattern != ModelEnum.DEFAULT.getModel()) {
             //除开默认模式其他的都需要验证包名
             if (StringUtil.isNull(packageName)) {
@@ -89,7 +92,7 @@ public class NewModuleDialog extends JDialog {
 
         boolean selected = radioButton1.isSelected();
         String patternKey = selected ? PatternEnum.SIMPLE.getKey() : PatternEnum.INTRICACY.getKey();
-        generateService.createTemplateCode(virtualFile.getPath(), name, packageName, patternKey, pattern);
+        generateService.createTemplateCode(virtualFile.getPath(), name, packageName, patternKey, pattern, settingsStorage);
         //刷新
         virtualFile.refresh(true, true);
         dispose();

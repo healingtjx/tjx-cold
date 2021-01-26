@@ -1,16 +1,16 @@
 package com.healingtjx.cold.action;
 
+import com.google.gson.Gson;
 import com.healingtjx.cold.entity.InfoConfig;
 import com.healingtjx.cold.service.GenerateService;
 import com.healingtjx.cold.storage.SettingsStorage;
 import com.healingtjx.cold.ui.NewModuleDialog;
+import com.healingtjx.cold.utils.ManagerUtil;
 import com.intellij.ide.IdeView;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.LangDataKeys;
 import com.intellij.openapi.components.ServiceManager;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.vfs.VirtualFile;
 
 import java.awt.*;
@@ -25,18 +25,9 @@ public class NewModuleAction extends AnAction {
     private GenerateService generateService;
 
 
-    private SettingsStorage settingsStorage;
-
     public NewModuleAction() {
         if (generateService == null) {
             generateService = ServiceManager.getService(GenerateService.class);
-        }
-
-        if (settingsStorage == null) {
-            //获取project
-            Project defaultProject = ProjectManager.getInstance().getDefaultProject();
-            settingsStorage = ServiceManager.getService(defaultProject,SettingsStorage.class);
-
         }
     }
 
@@ -47,7 +38,6 @@ public class NewModuleAction extends AnAction {
         VirtualFile virtualFile = ideView.getOrChooseDirectory().getVirtualFile();
         //显示界面
         showHintDialog(virtualFile);
-
     }
 
 
@@ -55,10 +45,8 @@ public class NewModuleAction extends AnAction {
      * 显示提示对话框
      */
     private void showHintDialog(VirtualFile virtualFile) {
-        //获取当前配置
-        InfoConfig infoConfig = settingsStorage.getInfoConfig();
-
-        NewModuleDialog dialog = new NewModuleDialog(virtualFile, generateService,infoConfig);
+        SettingsStorage currSettingsStorage = ManagerUtil.getCurrSettingsStorage();
+        NewModuleDialog dialog = new NewModuleDialog(virtualFile, generateService, currSettingsStorage);
         dialog.setTitle("New Module");
         dialog.setPreferredSize(new Dimension(300, 180));
         dialog.pack();

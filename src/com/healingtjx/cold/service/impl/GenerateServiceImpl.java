@@ -1,14 +1,14 @@
 package com.healingtjx.cold.service.impl;
 
-import com.healingtjx.cold.entity.*;
+import com.google.gson.Gson;
+import com.healingtjx.cold.entity.InfoConfig;
+import com.healingtjx.cold.entity.ModelEnum;
+import com.healingtjx.cold.entity.TemplateConfig;
 import com.healingtjx.cold.service.GenerateService;
 import com.healingtjx.cold.storage.SettingsStorage;
 import com.healingtjx.cold.utils.FileUtil;
 import com.healingtjx.cold.utils.StringUtil;
 import com.healingtjx.cold.utils.VmUtil;
-import com.intellij.openapi.components.ServiceManager;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.project.ProjectManager;
 import org.apache.velocity.VelocityContext;
 
 import java.time.LocalDateTime;
@@ -23,16 +23,9 @@ import java.util.Map;
  **/
 public class GenerateServiceImpl implements GenerateService {
 
-    private SettingsStorage settingsStorage;
-
     private DateTimeFormatter fmTime = DateTimeFormatter.ofPattern("HH:mm YYYY-MM-dd ");
 
     public GenerateServiceImpl() {
-        if (settingsStorage == null) {
-            //获取project
-            Project defaultProject = ProjectManager.getInstance().getDefaultProject();
-            settingsStorage = ServiceManager.getService(defaultProject,SettingsStorage.class);
-        }
     }
 
     /**
@@ -76,7 +69,7 @@ public class GenerateServiceImpl implements GenerateService {
     }
 
     @Override
-    public void createTemplateCode(String filePath, String name, String packageName, String patternKey, int model) {
+    public void createTemplateCode(String filePath, String name, String packageName, String patternKey, int model, SettingsStorage settingsStorage) {
         //加载配置
         InfoConfig infoConfig = settingsStorage.getInfoConfig();
         //获取src

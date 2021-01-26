@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.healingtjx.cold.entity.InfoConfig;
 import com.healingtjx.cold.entity.TemplateConfig;
 import com.healingtjx.cold.storage.SettingsStorage;
+import com.healingtjx.cold.utils.ManagerUtil;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.options.Configurable;
@@ -37,10 +38,8 @@ public class ColdConfigurable implements SearchableConfigurable, Configurable.No
     private SettingsStorage settingsStorage;
 
     public ColdConfigurable() {
-        //获取project
-        Project defaultProject = ProjectManager.getInstance().getDefaultProject();
-        settingsStorage = ServiceManager.getService(defaultProject,SettingsStorage.class);
-        settingsStorage.getState();
+        settingsStorage = ManagerUtil.getCurrSettingsStorage();
+        System.out.println("cold:"+new Gson().toJson(settingsStorage));
     }
 
 

@@ -18,7 +18,7 @@ import java.util.Map;
  * @Description:
  * @Date: 创建于17:10 2021-01-15
  **/
-@State(name = "SettingsStorage", storages = {@Storage("$APP_CONFIG$/tjxCold-settings.xml")})
+@State(name = "SettingsStorage", storages = {@Storage("tjxCold-settings.xml")})
 public class SettingsStorage implements PersistentStateComponent<SettingsStorage> {
 
     /**
@@ -36,7 +36,6 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
     @Nullable
     @Override
     public SettingsStorage getState() {
-        System.out.println("123123123");
         if (infoConfig == null) {
             loadDefaultSettings();
         }
