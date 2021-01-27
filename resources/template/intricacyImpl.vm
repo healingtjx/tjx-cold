@@ -2,7 +2,6 @@ package ${package};
 
 import ${servicePackage}.${serviceFileName};
 import com.healing.tjx.common.api.CommonResult;
-import com.healing.tjx.common.api.PageParam;
 import com.healing.tjx.common.api.PageResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class ${fileName} implements ${serviceFileName} {
 
     @Override
-    public PageResult list(PageParam pageParam) {
+    public PageResult list() {
         return null;
     }
 
