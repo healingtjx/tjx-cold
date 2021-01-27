@@ -1,10 +1,6 @@
 package com.healingtjx.cold.service.impl;
 
-import com.google.gson.Gson;
-import com.healingtjx.cold.entity.GenerationStrategyEnum;
-import com.healingtjx.cold.entity.InfoConfig;
-import com.healingtjx.cold.entity.ModelEnum;
-import com.healingtjx.cold.entity.TemplateConfig;
+import com.healingtjx.cold.entity.*;
 import com.healingtjx.cold.service.GenerateService;
 import com.healingtjx.cold.storage.SettingsStorage;
 import com.healingtjx.cold.utils.FileUtil;
@@ -89,6 +85,8 @@ public class GenerateServiceImpl implements GenerateService {
         //获取模板
         Map<String, TemplateConfig> templateConfigList = settingsStorage.getTemplateConfigList();
         TemplateConfig templateConfig = templateConfigList.get(patternKey);
+        //名称
+        VelocityString fileName = new VelocityString(name);
 
         //策略判断
         if (GenerationStrategyEnum.ALL.getStrategy() == generationStrategy || GenerationStrategyEnum.ONLY_CONTROLLER.getStrategy() == generationStrategy) {
@@ -97,13 +95,10 @@ public class GenerateServiceImpl implements GenerateService {
             //生成controller
             VelocityContext controllerContext = new VelocityContext();
             controllerContext.put("servicePackage", StringUtil.getPackageBySrc(serviceFileSrc));
-            controllerContext.put("serviceFileName", name + "Service");
             controllerContext.put("package", StringUtil.getPackageBySrc(controllerFileSrc));
             controllerContext.put("time", time);
-            controllerContext.put("fileName", name + "Controller");
-            controllerContext.put("serviceFileName", name + "Service");
-            controllerContext.put("serviceName", StringUtil.toLowerCaseFirstOne(name + "Service"));
-            String controllerOut = controllerFileSrc + "/" + name + "Controller.java";
+            controllerContext.put("fileName", fileName);
+            String controllerOut = controllerFileSrc + "/";
             VmUtil.create(controllerContext, templateConfig.getControllerTemplate(), controllerOut);
         }
         //策略判断
@@ -115,18 +110,17 @@ public class GenerateServiceImpl implements GenerateService {
             VelocityContext serviceContext = new VelocityContext();
             serviceContext.put("package", StringUtil.getPackageBySrc(serviceFileSrc));
             serviceContext.put("time", time);
-            serviceContext.put("fileName", name + "Service");
-            String serviceOut = serviceFileSrc + "/" + name + "Service.java";
+            serviceContext.put("fileName", fileName);
+            String serviceOut = serviceFileSrc + "/";
             VmUtil.create(serviceContext, templateConfig.getServiceTemplate(), serviceOut);
 
             //生成impl
             VelocityContext implContext = new VelocityContext();
             implContext.put("servicePackage", StringUtil.getPackageBySrc(serviceFileSrc));
-            implContext.put("serviceFileName", name + "Service");
             implContext.put("package", StringUtil.getPackageBySrc(implFileSrc));
             implContext.put("time", time);
-            implContext.put("fileName", name + "ServiceImpl");
-            String implOut = implFileSrc + "/" + name + "ServiceImpl.java";
+            implContext.put("fileName", fileName);
+            String implOut = implFileSrc + "/";
             VmUtil.create(implContext, templateConfig.getImplTemplate(), implOut);
         }
     }

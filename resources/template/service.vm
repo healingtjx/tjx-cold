@@ -5,5 +5,5 @@ package ${package};
 * @Description: 描述
 * @Date: 创建于${time}
 **/
-public interface ${fileName} {
+public interface ${fileName}Service {
 }

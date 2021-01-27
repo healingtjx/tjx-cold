@@ -13,6 +13,22 @@ public class StringUtil {
     private static final String PACKAGE_SRC = "src/main/java";
 
     /**
+     * class 字符串
+     */
+    private static final String CLASS_STR = "class";
+
+    /**
+     * interface 字符串
+     */
+    private static final String INTERFACE_STR = "interface";
+
+    /**
+     * implements
+     */
+    private static final String IMPLEMENTS_STR = "implements";
+
+
+    /**
      * 首字母转小写
      *
      * @param s 字符串
@@ -54,4 +70,91 @@ public class StringUtil {
         return packageSrc.length() > 0 ? packageSrc.replaceAll("/", ".") : null;
     }
 
+    /**
+     * 根据 代码获取类名
+     *
+     * @param str 代码
+     * @return
+     */
+    public static String getClassNameByStr(String str) {
+        //定位到 class
+        int classIndnx = str.indexOf(CLASS_STR);
+        int interfaceIndnx = str.indexOf(INTERFACE_STR);
+        if (classIndnx == -1 && interfaceIndnx == -1) {
+            return null;
+        }
+        if (classIndnx != -1) {
+            str = str.substring(classIndnx + CLASS_STR.length());
+        }else{
+            str = str.substring(interfaceIndnx + INTERFACE_STR.length());
+        }
+        //定位到括号
+        int bracketIndex = str.indexOf('{');
+        str = str.substring(0, bracketIndex);
+        //判断是否有 implements
+        int implementsIndex = str.indexOf(IMPLEMENTS_STR);
+        if (implementsIndex != -1) {
+            str = str.substring(0, implementsIndex);
+        }
+        // 去除前后空格
+        return str.trim();
+    }
+
+    public static void main(String[] args) {
+        String str =
+                "package com.healing.tjx.shop.controller;\n" +
+                        "\n" +
+                        "import io.swagger.annotations.Api;\n" +
+                        "import lombok.extern.slf4j.Slf4j;\n" +
+                        "import com.healing.tjx.shop.service.TestService;\n" +
+                        "import org.springframework.beans.factory.annotation.Autowired;\n" +
+                        "import org.springframework.web.bind.annotation.RequestMapping;\n" +
+                        "import org.springframework.web.bind.annotation.RestController;\n" +
+                        "\n" +
+                        "/**\n" +
+                        " * @Author: tjx\n" +
+                        " * @Description: 描述\n" +
+                        " * @Date: 创建于17:11 2021-01-27 \n" +
+                        " **/\n" +
+                        "@Slf4j\n" +
+                        "@RestController\n" +
+                        "@RequestMapping(\"/TestController\")\n" +
+                        "@Api(tags = \"TestController\", value = \"描述\")\n" +
+                        "public class TestController implements GenerateService {\n" +
+                        "\n" +
+                        "    @Autowired\n" +
+                        "    private TestService testService;\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "}\n" +
+                        "\n" +
+                        "package com.healing.tjx.shop.service;\n" +
+                        "\n" +
+                        "/**\n" +
+                        "* @Author: tjx\n" +
+                        "* @Description: 描述\n" +
+                        "* @Date: 创建于17:11 2021-01-27 \n" +
+                        "**/\n" +
+                        "public interface TestService {\n" +
+                        "}\n" +
+                        "\n" +
+                        "package com.healing.tjx.shop.service.impl;\n" +
+                        "\n" +
+                        "import com.healing.tjx.shop.service.TestService;\n" +
+                        "import lombok.extern.slf4j.Slf4j;\n" +
+                        "import org.springframework.stereotype.Service;\n" +
+                        "\n" +
+                        "/**\n" +
+                        " * @Author: tjx\n" +
+                        " * @Description: 描述\n" +
+                        " * @Date: 创建于17:11 2021-01-27 \n" +
+                        " **/\n" +
+                        "@Slf4j\n" +
+                        "@Service\n" +
+                        "public class TestServiceImpl implements TestService {\n" +
+                        "}\n" +
+                        "\n";
+        System.out.println(getClassNameByStr(str));
+    }
 }

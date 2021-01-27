@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.healingtjx.cold</id>
     <name>tjxCold</name>
-    <version>1.0</version>
+    <version>1.0.0</version>
     <vendor email="1095288440@qq.com" url="https://github.com/healingtjx">healingtjx</vendor>
 
     <description><![CDATA[
@@ -9,7 +9,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      <li>version 1.0</li>
+      <li>version 1.0.0</li>
+      <li>version 1.0.1
+      优化了制作模板过程
+      </li>
     ]]>
     </change-notes>
 

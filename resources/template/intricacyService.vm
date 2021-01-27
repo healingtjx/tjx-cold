@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @Date: 创建于${time}
  **/
 @Service
-public interface ${fileName} {
+public interface ${fileName}Service {
 
     /**
      * 列表

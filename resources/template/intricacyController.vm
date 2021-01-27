@@ -1,6 +1,6 @@
 package  ${package};
 
-import ${servicePackage}.${serviceFileName};
+import ${servicePackage}.${fileName}Service;
 import com.healing.tjx.common.api.CommonResult;
 import com.healing.tjx.common.api.PageResult;
 import io.swagger.annotations.Api;
@@ -21,28 +21,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/${fileName}")
 @Api(tags = "${fileName}", value = "描述")
-public class ${fileName}{
+public class ${fileName}Controller{
 
 
     @Autowired
-    private ${serviceFileName} ${serviceName};
+    private ${fileName}Service ${fileName.toLowerCaseFirstOne()}Service;
 
     @ApiOperation(value = "列表")
     @GetMapping("/list")
     public PageResult list() {
-        return ${serviceName}.list();
+        return ${fileName.toLowerCaseFirstOne()}Service.list();
     }
 
     @ApiOperation(value = "新增/修改 ")
     @PostMapping("/change")
     public CommonResult change() {
-        return ${serviceName}.change();
+        return ${fileName.toLowerCaseFirstOne()}Service.change();
     }
 
     @ApiOperation(value = "删除")
     @PostMapping("/delete")
     public CommonResult delete(int id) {
-        return ${serviceName}.delete(id);
+        return ${fileName.toLowerCaseFirstOne()}Service.delete(id);
     }
 
 
