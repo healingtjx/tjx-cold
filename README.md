@@ -15,7 +15,7 @@
 
 ## 安装
 
-#### 1.下载地址
+#### 1.下载地址（下载最新版本）
 https://gitee.com/healingtjx/tjx-cold/releases
 
 https://github.com/healingtjx/tjx-cold/releases/
@@ -58,7 +58,45 @@ service/impl/{Package}/{fileName}.java
 ## 模版代码配置
 根据自己的工程配置自己的模版代码（后续我会把定义号的变量整理出来）
 
-我的存储用的poject 级别所以每一个工程都可以配置一个
+#### 自定义变量
+
+- 公共变量
+
+  |  变量名称   | 变量作用                                                     |
+  | :---------: | ------------------------------------------------------------ |
+  |   ${time}   | 当前时间(格式 HH:mm YYYY-MM-dd)                              |
+  | ${fileName} | 文件名称前缀，也就是new的 时候填写的( 例如：拼接 ${fileName}Controller ) |
+  |  ${author}  | 作者                                                         |
+  | ${package}  | 根据配置生成的包路径(contrller,service,impl 路径都不同)      |
+
+
+
+#### 单独变量
+
+- Controller
+
+| 变量名称          | 变量作用        |
+| ----------------- | --------------- |
+| ${servicePackage} | service的包路径 |
+
+- Service(无)
+
+- Impl
+
+| 变量名称          | 变量作用        |
+| ----------------- | --------------- |
+| ${servicePackage} | service的包路径 |
+
+
+
+##### 我的存储用的poject 级别所以每一个工程都可以配置一个
+
+
+
+下面图片 模板已过期(之前版本的)，最新的已经优化了
+
+查看最新模板 https://gitee.com/healingtjx/tjx-cold/tree/master/resources/template   https://github.com/healingtjx/tjx-cold/tree/master/resources/template
+
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f126f41e3d934b64898d9b5f868959d1~tplv-k3u1fbpfcp-watermark.image)
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8189237cf81a4f30b3dda3825f6d83d5~tplv-k3u1fbpfcp-watermark.image)
 
