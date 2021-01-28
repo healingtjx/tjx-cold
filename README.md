@@ -16,9 +16,9 @@
 ## 安装
 
 #### 1.下载地址
-https://gitee.com/healingtjx/tjx-cold/releases/1.0.0
+https://gitee.com/healingtjx/tjx-cold/releases
 
-https://github.com/healingtjx/tjx-cold/releases/tag/1.0.0
+https://github.com/healingtjx/tjx-cold/releases/
 
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/fea3bd4cee104380929ffd56a2b1d5f5~tplv-k3u1fbpfcp-watermark.image)
 
