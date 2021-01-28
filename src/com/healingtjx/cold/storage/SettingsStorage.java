@@ -49,7 +49,7 @@ public class SettingsStorage implements PersistentStateComponent<SettingsStorage
         //读取文件里面配置
 
         //基础信息配置
-        InfoConfig infoConfig = new InfoConfig("controller", "service", "service/impl", 0);
+        InfoConfig infoConfig = new InfoConfig("controller", "service", "service/impl", 0,"作者");
         //基础模板配置
         templateConfigList = new HashMap<>(8);
 

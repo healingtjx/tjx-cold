@@ -68,7 +68,6 @@ public class TemplateEditPane {
         importButton.addActionListener(e -> importListener(e));
         exportButton.addActionListener(e -> exportListener(e));
 
-
         //加载简单模式数据
         loadByTemplateConfigByKey(PatternEnum.SIMPLE.getKey());
 
@@ -228,8 +227,17 @@ public class TemplateEditPane {
                 templateConfig.setByKey(templateItemKey, text);
             }
         }
+    }
 
-
+    /**
+     * 保存当前配置
+     */
+    public void saveTheCurrent(){
+        SelectItem item = (SelectItem) patternComboBox.getSelectedItem();
+        String templateItemKey = (String) templateComboBox.getSelectedItem();
+        TemplateConfig templateConfig = templateConfigList.get(item.getKey());
+        String text = textArea.getText();
+        templateConfig.setByKey(templateItemKey, text);
     }
 
     /**

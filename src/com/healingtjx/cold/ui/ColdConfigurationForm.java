@@ -70,6 +70,14 @@ public class ColdConfigurationForm {
         return infoConfigEditPane.getInputs();
     }
 
+    /**
+     * 获取 info配置信息
+     *
+     * @return
+     */
+    public void saveTheCurrent() {
+        templateEditPane.saveTheCurrent();
+    }
 
     /**
      * 获取 模板配置数据

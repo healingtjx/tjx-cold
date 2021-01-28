@@ -30,15 +30,21 @@ public class InfoConfig implements Serializable {
      */
     private int pattern;
 
+    /**
+     * 作者
+     */
+    private String author;
+
     public InfoConfig() {
         super();
     }
 
-    public InfoConfig(String controllerPackage, String servicePackage, String implPackage, int pattern) {
+    public InfoConfig(String controllerPackage, String servicePackage, String implPackage, int pattern, String author) {
         this.controllerPackage = controllerPackage;
         this.servicePackage = servicePackage;
         this.implPackage = implPackage;
         this.pattern = pattern;
+        this.author = author;
     }
 
     public String getControllerPackage() {
@@ -71,5 +77,13 @@ public class InfoConfig implements Serializable {
 
     public void setPattern(int pattern) {
         this.pattern = pattern;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

@@ -81,23 +81,29 @@ public class GenerateServiceImpl implements GenerateService {
 
         //获取时间
         String time = LocalDateTime.now().format(fmTime);
+        //名称
+        VelocityString fileName = new VelocityString(name);
+        //作者
+        String author = infoConfig.getAuthor();
 
+        //公共参数
+        VelocityContext publicContext = new VelocityContext();
+        publicContext.put("time", time);
+        publicContext.put("fileName", fileName);
+        publicContext.put("author", author);
         //获取模板
         Map<String, TemplateConfig> templateConfigList = settingsStorage.getTemplateConfigList();
         TemplateConfig templateConfig = templateConfigList.get(patternKey);
-        //名称
-        VelocityString fileName = new VelocityString(name);
+
 
         //策略判断
         if (GenerationStrategyEnum.ALL.getStrategy() == generationStrategy || GenerationStrategyEnum.ONLY_CONTROLLER.getStrategy() == generationStrategy) {
             //不存在就创建
             FileUtil.mkdirBySrc(controllerFileSrc);
             //生成controller
-            VelocityContext controllerContext = new VelocityContext();
+            VelocityContext controllerContext = publicContext;
             controllerContext.put("servicePackage", StringUtil.getPackageBySrc(serviceFileSrc));
             controllerContext.put("package", StringUtil.getPackageBySrc(controllerFileSrc));
-            controllerContext.put("time", time);
-            controllerContext.put("fileName", fileName);
             String controllerOut = controllerFileSrc + "/";
             VmUtil.create(controllerContext, templateConfig.getControllerTemplate(), controllerOut);
         }
@@ -107,19 +113,15 @@ public class GenerateServiceImpl implements GenerateService {
             FileUtil.mkdirBySrc(serviceFileSrc);
             FileUtil.mkdirBySrc(implFileSrc);
             //生成service
-            VelocityContext serviceContext = new VelocityContext();
+            VelocityContext serviceContext = publicContext;
             serviceContext.put("package", StringUtil.getPackageBySrc(serviceFileSrc));
-            serviceContext.put("time", time);
-            serviceContext.put("fileName", fileName);
             String serviceOut = serviceFileSrc + "/";
             VmUtil.create(serviceContext, templateConfig.getServiceTemplate(), serviceOut);
 
             //生成impl
-            VelocityContext implContext = new VelocityContext();
+            VelocityContext implContext = publicContext;
             implContext.put("servicePackage", StringUtil.getPackageBySrc(serviceFileSrc));
             implContext.put("package", StringUtil.getPackageBySrc(implFileSrc));
-            implContext.put("time", time);
-            implContext.put("fileName", fileName);
             String implOut = implFileSrc + "/";
             VmUtil.create(implContext, templateConfig.getImplTemplate(), implOut);
         }

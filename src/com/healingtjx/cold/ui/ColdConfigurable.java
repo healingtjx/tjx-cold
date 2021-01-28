@@ -7,6 +7,7 @@ import com.healingtjx.cold.utils.ManagerUtil;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SearchableConfigurable;
+import com.intellij.openapi.ui.Messages;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -62,7 +63,8 @@ public class ColdConfigurable implements SearchableConfigurable, Configurable.No
     public boolean isModified() {
         InfoConfig infoConfigInputs = configurationForm.getInfoConfigInputs();
         Map<String, TemplateConfig> configList = configurationForm.getTemplateConfigList();
-        //校验
+        //实时保存
+        configurationForm.saveTheCurrent();
         return (infoConfigInputs == null || configList == null) ? false : true;
     }
 

@@ -1,6 +1,7 @@
 package com.healingtjx.cold.ui;
 
 import com.healingtjx.cold.entity.InfoConfig;
+import com.healingtjx.cold.utils.StringUtil;
 
 import javax.swing.*;
 
@@ -18,6 +19,7 @@ public class InfoConfigEditPane {
     private JRadioButton onePattern;
     private JRadioButton twoPattern;
     private JRadioButton threePattern;
+    private JTextField authorText;
     private ButtonGroup group;
 
 
@@ -35,6 +37,9 @@ public class InfoConfigEditPane {
         controllerText.setText(config.getControllerPackage());
         serviceText.setText(config.getServicePackage());
         implText.setText(config.getImplPackage());
+        if (!StringUtil.isNull(config.getAuthor())) {
+            authorText.setText(config.getAuthor());
+        }
         //选择模式
         group = new ButtonGroup();
         group.add(defaultPattern);
@@ -72,7 +77,7 @@ public class InfoConfigEditPane {
         boolean oneSelected = onePattern.isSelected();
         boolean twoSelected = twoPattern.isSelected();
         return new InfoConfig(controllerText.getText(), serviceText.getText(), implText.getText()
-                , defaultSelected ? 0 : (oneSelected ? 1 : (twoSelected ? 2 : 3)));
+                , defaultSelected ? 0 : (oneSelected ? 1 : (twoSelected ? 2 : 3)), authorText.getText());
     }
 
 
