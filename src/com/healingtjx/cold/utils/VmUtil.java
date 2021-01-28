@@ -1,6 +1,5 @@
 package com.healingtjx.cold.utils;
 
-import com.healingtjx.cold.entity.InfoConfig;
 import com.healingtjx.cold.entity.VelocityString;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -37,7 +36,6 @@ public class VmUtil {
             }
             out += className + ".java";
 
-            System.out.println(writer);
             BufferedWriter fw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(out), "UTF-8"));
             PrintWriter pw = new PrintWriter(fw);
             pw.println(writer.toString());

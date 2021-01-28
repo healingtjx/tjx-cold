@@ -1,6 +1,9 @@
 package com.healingtjx.cold.ui;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.healingtjx.cold.entity.PatternEnum;
 import com.healingtjx.cold.entity.SelectItem;
 import com.healingtjx.cold.entity.TemplateConfig;
@@ -8,10 +11,9 @@ import com.healingtjx.cold.entity.TemplateItemEnum;
 import com.intellij.openapi.ui.Messages;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -32,9 +34,10 @@ public class TemplateEditPane {
     private JPanel panel1;
     private JTextArea textArea;
     private JButton submitButton;
-    private JButton resetButton;
+    private JButton importButton;
     private JComboBox<SelectItem> patternComboBox;
     private JComboBox templateComboBox;
+    private JButton exportButton;
     private JButton showTestInput;
     private JComboBox targetLanguage;
 
@@ -61,6 +64,10 @@ public class TemplateEditPane {
         patternComboBox.addItemListener(e -> patternComboBoxChangeListener(e));
         //保存事件
         submitButton.addActionListener(e -> saveListener(e));
+        //导入导出
+        importButton.addActionListener(e -> importListener(e));
+        exportButton.addActionListener(e -> exportListener(e));
+
 
         //加载简单模式数据
         loadByTemplateConfigByKey(PatternEnum.SIMPLE.getKey());
@@ -131,6 +138,54 @@ public class TemplateEditPane {
 
 
     /**
+     * 导入配置
+     *
+     * @param event
+     */
+    public void importListener(ActionEvent event) {
+        //实例化json相关
+        JsonParser parse = new JsonParser();
+        Gson gson = new Gson();
+        String json = Messages.showInputDialog("导入", "导入", null);
+        if (json == null || json.trim().length() == 0) {
+            return;
+        }
+        try {
+            //解析json 封装新的配置
+            Map<String, TemplateConfig> newTemplateConfigList = new HashMap<>(8);
+            JsonObject jsonObject = (JsonObject) parse.parse(json);
+            JsonElement simpleJson = jsonObject.get(PatternEnum.SIMPLE.getKey());
+            newTemplateConfigList.put(PatternEnum.SIMPLE.getKey(), gson.fromJson(simpleJson, TemplateConfig.class));
+            JsonElement complexJson = jsonObject.get(PatternEnum.INTRICACY.getKey());
+            newTemplateConfigList.put(PatternEnum.INTRICACY.getKey(), gson.fromJson(complexJson, TemplateConfig.class));
+            //刷新到当前配置
+            this.templateConfigList = newTemplateConfigList;
+
+            //复原下拉框
+            patternComboBox.setSelectedIndex(0);
+            templateComboBox.setSelectedIndex(0);
+
+            //刷新当前配置
+            loadByTemplateConfigByKey(PatternEnum.SIMPLE.getKey());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Messages.showMessageDialog("配置格式错误", "错误提示", null);
+        }
+    }
+
+    /**
+     * 导出配置
+     *
+     * @param e
+     */
+    public void exportListener(ActionEvent e) {
+        //获取当前配置
+        String json = new Gson().toJson(templateConfigList);
+        Messages.showInputDialog("导出", "导出", null, json, null);
+    }
+
+
+    /**
      * 保存事件
      *
      * @param e
@@ -185,4 +240,5 @@ public class TemplateEditPane {
     public Map<String, TemplateConfig> getTemplateConfigList() {
         return templateConfigList;
     }
+
 }

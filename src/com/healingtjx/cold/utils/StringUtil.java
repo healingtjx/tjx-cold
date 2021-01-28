@@ -85,7 +85,7 @@ public class StringUtil {
         }
         if (classIndnx != -1) {
             str = str.substring(classIndnx + CLASS_STR.length());
-        }else{
+        } else {
             str = str.substring(interfaceIndnx + INTERFACE_STR.length());
         }
         //定位到括号
@@ -100,61 +100,4 @@ public class StringUtil {
         return str.trim();
     }
 
-    public static void main(String[] args) {
-        String str =
-                "package com.healing.tjx.shop.controller;\n" +
-                        "\n" +
-                        "import io.swagger.annotations.Api;\n" +
-                        "import lombok.extern.slf4j.Slf4j;\n" +
-                        "import com.healing.tjx.shop.service.TestService;\n" +
-                        "import org.springframework.beans.factory.annotation.Autowired;\n" +
-                        "import org.springframework.web.bind.annotation.RequestMapping;\n" +
-                        "import org.springframework.web.bind.annotation.RestController;\n" +
-                        "\n" +
-                        "/**\n" +
-                        " * @Author: tjx\n" +
-                        " * @Description: 描述\n" +
-                        " * @Date: 创建于17:11 2021-01-27 \n" +
-                        " **/\n" +
-                        "@Slf4j\n" +
-                        "@RestController\n" +
-                        "@RequestMapping(\"/TestController\")\n" +
-                        "@Api(tags = \"TestController\", value = \"描述\")\n" +
-                        "public class TestController implements GenerateService {\n" +
-                        "\n" +
-                        "    @Autowired\n" +
-                        "    private TestService testService;\n" +
-                        "\n" +
-                        "\n" +
-                        "\n" +
-                        "}\n" +
-                        "\n" +
-                        "package com.healing.tjx.shop.service;\n" +
-                        "\n" +
-                        "/**\n" +
-                        "* @Author: tjx\n" +
-                        "* @Description: 描述\n" +
-                        "* @Date: 创建于17:11 2021-01-27 \n" +
-                        "**/\n" +
-                        "public interface TestService {\n" +
-                        "}\n" +
-                        "\n" +
-                        "package com.healing.tjx.shop.service.impl;\n" +
-                        "\n" +
-                        "import com.healing.tjx.shop.service.TestService;\n" +
-                        "import lombok.extern.slf4j.Slf4j;\n" +
-                        "import org.springframework.stereotype.Service;\n" +
-                        "\n" +
-                        "/**\n" +
-                        " * @Author: tjx\n" +
-                        " * @Description: 描述\n" +
-                        " * @Date: 创建于17:11 2021-01-27 \n" +
-                        " **/\n" +
-                        "@Slf4j\n" +
-                        "@Service\n" +
-                        "public class TestServiceImpl implements TestService {\n" +
-                        "}\n" +
-                        "\n";
-        System.out.println(getClassNameByStr(str));
-    }
 }

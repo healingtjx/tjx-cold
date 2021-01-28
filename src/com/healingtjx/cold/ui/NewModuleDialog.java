@@ -1,7 +1,5 @@
 package com.healingtjx.cold.ui;
 
-import com.google.gson.Gson;
-import com.healingtjx.cold.entity.InfoConfig;
 import com.healingtjx.cold.entity.ModelEnum;
 import com.healingtjx.cold.entity.PatternEnum;
 import com.healingtjx.cold.service.GenerateService;

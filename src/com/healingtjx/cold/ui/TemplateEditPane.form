@@ -46,11 +46,18 @@
                   <verticalTextPosition value="0"/>
                 </properties>
               </component>
-              <component id="67c0d" class="javax.swing.JButton" binding="resetButton">
+              <component id="67c0d" class="javax.swing.JButton" binding="importButton">
                 <constraints/>
                 <properties>
-                  <text value="重置当前配置"/>
-                  <visible value="false"/>
+                  <text value="导入配置"/>
+                  <visible value="true"/>
+                </properties>
+              </component>
+              <component id="978a3" class="javax.swing.JButton" binding="exportButton">
+                <constraints/>
+                <properties>
+                  <text value="导出配置"/>
+                  <visible value="true"/>
                 </properties>
               </component>
             </children>
