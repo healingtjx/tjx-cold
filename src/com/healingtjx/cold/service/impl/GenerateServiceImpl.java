@@ -20,7 +20,7 @@ import java.util.Map;
  **/
 public class GenerateServiceImpl implements GenerateService {
 
-    private DateTimeFormatter fmTime = DateTimeFormatter.ofPattern("HH:mm YYYY-MM-dd ");
+    private DateTimeFormatter fmTime = DateTimeFormatter.ofPattern("HH:mm YYYY-MM-dd");
 
     public GenerateServiceImpl() {
     }
