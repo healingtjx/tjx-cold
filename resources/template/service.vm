@@ -1,7 +1,7 @@
 package ${package};
 
 /**
-* @Author: tjx
+* @Author: ${author}
 * @Description: 描述
 * @Date: 创建于${time}
 **/

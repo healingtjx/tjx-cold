@@ -5,7 +5,7 @@ import com.healing.tjx.common.api.PageResult;
 import org.springframework.stereotype.Service;
 
 /**
- * @Author: tjx
+ * @Author: ${author}
  * @Description:
  * @Date: 创建于${time}
  **/
