@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.healingtjx.cold</id>
     <name>tjxCold</name>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <vendor email="1095288440@qq.com" url="https://github.com/healingtjx">healingtjx</vendor>
 
     <description><![CDATA[
@@ -15,6 +15,9 @@
       </li>
       <li>version 1.0.2
       支持作者配置，加入模板信息实时保存
+      </li>
+      <li>version 1.0.3
+      修复因为velocity 生成日志，导致无法生成代码的bug
       </li>
     ]]>
     </change-notes>
