@@ -1,8 +1,9 @@
 package com.healingtjx.cold.utils;
 
-import com.healingtjx.cold.entity.VelocityString;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.log.NullLogChute;
 
 import java.io.*;
 
@@ -24,6 +25,8 @@ public class VmUtil {
     public static void create(VelocityContext context, String template, String out) {
         //实例化
         VelocityEngine ve = new VelocityEngine();
+        //关闭日志
+        ve.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM, new NullLogChute());
         ve.init();
         try {
             StringWriter writer = new StringWriter();
@@ -44,18 +47,5 @@ public class VmUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        String template = "package ${test.toLowerCaseFirstOne()};";
-        VelocityContext context = new VelocityContext();
-        context.put("test", new VelocityString("1estJava"));
-        StringWriter writer = new StringWriter();
-        //实例化
-        VelocityEngine ve = new VelocityEngine();
-        ve.init();
-        //生成代码
-        ve.evaluate(context, writer, "", template);
-        System.out.println(writer);
     }
 }
