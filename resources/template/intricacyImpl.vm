@@ -1,9 +1,6 @@
 package ${package};
 
 import ${servicePackage}.${fileName}Service;
-import com.healing.tjx.common.api.CommonResult;
-import com.healing.tjx.common.api.PageResult;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,22 +8,21 @@ import org.springframework.stereotype.Service;
  * @Description: 描述
  * @Date:  创建于${time}
  **/
-@Slf4j
 @Service
 public class ${fileName}ServiceImpl implements ${fileName}Service {
 
     @Override
-    public PageResult list() {
+    public Object list() {
         return null;
     }
 
     @Override
-    public CommonResult<Long> change() {
+    public Object change() {
         return null;
     }
 
     @Override
-    public CommonResult<Integer> delete(int id) {
+    public Object delete(int id) {
         return null;
     }
 

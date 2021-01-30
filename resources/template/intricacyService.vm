@@ -1,7 +1,5 @@
 package ${package};
 
-import com.healing.tjx.common.api.CommonResult;
-import com.healing.tjx.common.api.PageResult;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,17 +13,17 @@ public interface ${fileName}Service {
     /**
      * 列表
      *
-     * @return CommonResult
+     * @return
      */
-    PageResult list();
+    Object list();
 
 
     /**
      * 修改/新增
      *
-     * @return CommonResult<Integer> 用户id
+     * @return 用户id
      */
-    CommonResult<Long> change();
+    Object change();
 
 
     /**
@@ -34,5 +32,5 @@ public interface ${fileName}Service {
      * @param id
      * @return
      */
-    CommonResult<Integer> delete(int id);
+     Object delete(int id);
 }

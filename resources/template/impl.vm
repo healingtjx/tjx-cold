@@ -1,7 +1,6 @@
 package ${package};
 
 import ${servicePackage}.${fileName}Service;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
  * @Description: 描述
  * @Date: 创建于${time}
  **/
-@Slf4j
 @Service
 public class ${fileName}ServiceImpl implements ${fileName}Service {
 }
