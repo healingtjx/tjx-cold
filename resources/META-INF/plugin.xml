@@ -5,6 +5,7 @@
     <vendor email="1095288440@qq.com" url="https://github.com/healingtjx">healingtjx</vendor>
 
     <description><![CDATA[
+      快速生成模板(https://tjxcold.chsgw.com)
       用于根据配置模板，快速生成controller,service,impl 代码
     ]]></description>
 
