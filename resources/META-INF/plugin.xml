@@ -2,32 +2,52 @@
     <id>com.healingtjx.cold</id>
     <name>tjxCold</name>
     <version>1.0.3</version>
-    <vendor email="1095288440@qq.com" url="https://github.com/healingtjx">healingtjx</vendor>
+    <vendor email="1095288440@qq.com" url="https://tjxcold.chsgw.com">healingtjx</vendor>
     <!-- 上传相关 -->
     <depends>com.intellij.modules.lang</depends>
 
     <description><![CDATA[
+      <tag> Used for quick generation based on configuration templates （controller,service,impl）code ,code tools</tag>
       Quick Generate Templates(https://tjxcold.chsgw.com)
-      Used for quick generation based on configuration templates （controller,service,impl）
+      <h3>English:</h3>
+      <ul>
+        <li>The (controller,service,impl) code generation plug-in based on IntelliJ IDEA is developed .</li>
+        <li>Does not rely on database generation.</li>
+        <li>Support for custom templates.</li>
+      </ul>
 
-      快速生成模板(https://tjxcold.chsgw.com)
-      用于根据配置模板，快速生成controller,service,impl 代码
+      <h3>中文:</h3>
+      <ul>
+        <li>基于Idea开发的用于快速生成(控制层,业务层,业务层实现)代码插件.</li>
+        <li>代码生成不依赖数据库.</li>
+        <li>支持自定义模版配置.</li>
+      </ul>
     ]]></description>
 
     <change-notes><![CDATA[
-      <li>version 1.0.0</li>
-      <li>version 1.0.1
-      Optimized template making process
-      优化了制作模板过程
-      </li>
-      <li>version 1.0.2
-      Support author configuration, add template information real-time saving
-      支持作者配置，加入模板信息实时保存
-      </li>
-      <li>version 1.0.3
-      Added template import and export
-      加入了模板导入、导出
-      </li>
+     <p>1.0.2</p>
+     <ul>
+       <li>1.Support for importing and exporting configuration information</li>
+     </ul>
+     <ul>
+       <li>1.支持配置信息导入导出</li>
+     </ul>
+     <p>1.0.1</p>
+     <ul>
+       <li>1.Fix known bugs</li>
+     </ul>
+     <ul>
+       <li>1.修复已知BUG</li>
+     </ul>
+     <p>1.0.0</p>
+     <ul>
+       <li>1.Support custom templates (based on velocity)</li>
+       <li>2.Support for different directory configurations</li>
+     </ul>
+     <ul>
+       <li>1.支持自定义模版配置(基于velocity)</li>
+       <li>2.支持不同目录配置</li>
+     </ul>
     ]]>
     </change-notes>
 
