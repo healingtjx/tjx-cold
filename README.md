@@ -1,4 +1,4 @@
-用于根据配置模板，快速生成controller,service,serviceimpl 代码
+用于根据配置模板，快速生成controller,service,serviceimpl 代码（交流群 623169994 ）
 ![生成代码演示](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/21449365672346a5a173ed07225b927d~tplv-k3u1fbpfcp-zoom-1.image)
 
 
