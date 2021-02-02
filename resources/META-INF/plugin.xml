@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.healingtjx.cold</id>
     <name>tjxCold</name>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <vendor email="1095288440@qq.com" url="https://tjxcold.chsgw.com">healingtjx</vendor>
     <!-- 上传相关 -->
     <depends>com.intellij.modules.lang</depends>
@@ -25,6 +25,14 @@
     ]]></description>
 
     <change-notes><![CDATA[
+     <p>1.0.4</p>
+     <ul>
+       <li>1.Optimized the path to right-click to select directories</li>
+     </ul>
+     <ul>
+       <li>1.优化了右击选择目录的路径</li>
+     </ul>
+     <p>1.0.3</p>
      <p>1.0.2</p>
      <ul>
        <li>1.Support for importing and exporting configuration information</li>
