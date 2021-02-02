@@ -1,5 +1,6 @@
 package com.healingtjx.cold.ui;
 
+import com.healingtjx.cold.entity.GenerationStrategyEnum;
 import com.healingtjx.cold.entity.ModelEnum;
 import com.healingtjx.cold.entity.PatternEnum;
 import com.healingtjx.cold.service.GenerateService;
@@ -91,6 +92,26 @@ public class NewModuleDialog extends JDialog {
             if (StringUtil.isNull(packageName)) {
                 Messages.showMessageDialog("包名不能为空！", "提示", null);
                 return;
+            }
+        }
+        //如果单独选择controller,service,需要对路径进行判断
+        if (generationStrategy != GenerationStrategyEnum.ALL.getStrategy()) {
+            String path = virtualFile.getPath();
+            //获取最后一个 /后面的内容
+            int index = path.lastIndexOf('/');
+            if (index != -1) {
+                String currPackageName = path.substring(index + 1);
+                //判断当前路径是否和配置的一样
+                if (generationStrategy == GenerationStrategyEnum.ONLY_CONTROLLER.getStrategy()) {
+                    if (settingsStorage.getInfoConfig().getControllerPackage().equals(currPackageName)) {
+                        virtualFile = virtualFile.getParent();
+                    }
+                }
+                if (generationStrategy == GenerationStrategyEnum.ONLY_SERVICE.getStrategy()) {
+                    if (settingsStorage.getInfoConfig().getServicePackage().equals(currPackageName)) {
+                        virtualFile = virtualFile.getParent();
+                    }
+                }
             }
         }
 

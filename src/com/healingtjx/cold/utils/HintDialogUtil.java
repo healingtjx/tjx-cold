@@ -1,5 +1,6 @@
 package com.healingtjx.cold.utils;
 
+import com.healingtjx.cold.entity.GenerationStrategyEnum;
 import com.healingtjx.cold.service.GenerateService;
 import com.healingtjx.cold.storage.SettingsStorage;
 import com.healingtjx.cold.ui.NewModuleDialog;
